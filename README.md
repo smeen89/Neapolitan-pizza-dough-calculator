@@ -22,7 +22,14 @@
 <b>3.</b> Yaml code - the code needs to go in your configuration.yaml file. This sets up the calculation and the sensors needed.<br>
 <b>4.</b> Lovelace UI card yaml code - this is the code for the user interface and goes in your lovelace view.<br>
 
- <h2>Some quick notes on how I make a pizza dough:</h2>
+ <h2>Some quick notes on how I make a pizza dough:</h2><br>
+ <b>Basic settings to get started that works well with Caputo Pizzeria flour:</b><br>
+
+<b>Jästemperatur:</b> 21 °C<br>
+<b>Jästid:</b> 24 h<br>
+<b>Vatten:</b> 66%<br>
+<b>Salt:</b> 3%<br>
+ 
  <b>1.</b> Start by disolving the yeast in lukewarm water, add salt and flour and mix the ingredients until they form a rough dough. No need for stretcing or kneeding. This is a "no knead dough"<br>
  <b>2.</b> Cover dough and let rest for 30 minutes.<br>
  <b>3.</b> Fold the dough over itself five times. There is great videos on YouTube on how to fold a "no knead pizza dough".<br>
