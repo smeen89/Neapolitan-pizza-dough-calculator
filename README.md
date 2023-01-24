@@ -23,7 +23,7 @@
  <b>6.</b> Cover dough and wait for 15 minutes.<br>
  <b>7.</b> Fold the dough over itself five times.<br>
  <b>8.</b> Now it's time for bulk fermentation.<br>
- <b>9.</b> Form into dough balls, cover and prove for remaining time.<br><br>
+ <b>9.</b> Form into dough balls, cover and proof for remaining time.<br><br>
  <i>I usually let the dough bulk ferment for the first half of the time, and then proof for the rest of the time as individual dough balls.<br> 
  Please feel fre to try out what you prefer.</i><br><br>
  
