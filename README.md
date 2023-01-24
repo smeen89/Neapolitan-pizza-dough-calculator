@@ -6,7 +6,7 @@
   <b>a)</b> input of number of pizzas and<br>
   <b>b)</b> weight of each pizza
   
- <b>2. Calculate required amount of fresh yeast based on:</b><br>
+ <b>2. Calculate required amount of fresh yeast* based on:</b><br>
    <b>a)</b> surrounding temperature of the dough throughout the fermentation i.e room temperature (or fridge temperature)<br>
    <b>b)</b> time until baking out the pizzas.<br>
    
@@ -16,13 +16,9 @@
    
 <b>The 4 main files are:</b><br>
 <b>1.</b> HACS repositories - i.e a list of links to github repositories for Home Assistant that I've used for the setup.<br>
-<b>2.</b> Input Helpers - a list of the input helpers (names and settings) that needs to be created in order for the calculator to work.<br>
+<b>2.</b> Input Helpers - a list of the input helpers (names** and settings) that needs to be created in order for the calculator to work.<br>
 <b>3.</b> Yaml code - the code needs to go in your configuration.yaml file. This sets up the calculation and the sensors needed.<br>
 <b>4.</b> Lovelace UI card yaml code - this is the code for the user interface and goes in your lovelace view.<br>
-
-<i>Note 1: The yeast is calculated based on fresh yeast. I'm from Sweden and use Kronjäst blå. Other brands or yeast types may give varying results.</i><br>
-
-<i>Note 2: The input helpers, sensors and lovelace UI card yaml code have swedish names and terms.</i> <br>
 
  <h2>Some quick notes on how I make a pizza dough:</h2>
  <b>1.</b> Start by disolving the yeast in lukewarm water, add salt and flour and mix the ingredients until they form a rough dough. No need for stretcing or kneeding. This is a "no knead dough"<br>
@@ -37,4 +33,9 @@
  <i>I usually let the dough bulk ferment for the first half of the time, and then proof for the rest of the time as individual dough balls.<br> 
  Please feel free to try out what you prefer.</i><br><br>
 
-For video demonstration and great ideas see this reddit thread: https://www.reddit.com/r/homeassistant/comments/10k28wu/i_made_a_neapolitan_pizza_dough_calculator_with/
+For video demonstration and great ideas see this reddit thread: https://www.reddit.com/r/homeassistant/comments/10k28wu/i_made_a_neapolitan_pizza_dough_calculator_with/<br><br>
+
+
+<i>*note 1: The yeast is calculated based on fresh yeast. I'm from Sweden and use Kronjäst blå. Other brands or yeast types may give varying results.</i><br>
+
+<i>**note 2: The input helpers, sensors and lovelace UI card yaml code have swedish names and terms.</i> <br>
