@@ -1,4 +1,6 @@
-<h1>Neapolitan pizza dough calculator for Home Assistant</h1>
+<h1>Neapolitan pizza dough calculator for Home Assistant</h1><br>
+
+![kalkylator](https://user-images.githubusercontent.com/106514124/214378704-5c25df76-21cf-44c7-9757-b0146867b47e.png)<br>
 
 <h2>This calculator aims to:</h2>
 
