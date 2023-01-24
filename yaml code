@@ -1,0 +1,128 @@
+sensor:
+  - platform: template
+    sensors:
+      pizzakalkylator_total_procent:
+        unit_of_measurement: procent
+        value_template: "{{ states('input_number.pizzakalkylator_mjol') | float(0) + states('input_number.pizzakalkylator_hydrering') | float(0) + states('input_number.pizzakalkylator_salt') | float(0) + states('sensor.pizzakalkylator_kalkylerad_jast') | float(0) }}"
+      pizzakalkylator_total_degvikt:
+        unit_of_measurement: gram
+        value_template: "{{ states('input_number.pizzakalkylator_degvikt') | float(0) * states('input_number.pizzakalkylator_antal_pizzor') | float(0) | round(0) }}"
+      pizzakalkylator_hydrering_procent:
+        unit_of_measurement: bageriprocent
+        value_template: "{{ states('input_number.pizzakalkylator_hydrering') | float(0) / states('sensor.pizzakalkylator_total_procent') | float(0) | round(1) }}"
+      pizzakalkylator_jast_procent:
+        unit_of_measurement: bageriprocent
+        value_template: "{{ states('sensor.pizzakalkylator_kalkylerad_jast') | float(0) / states('sensor.pizzakalkylator_total_procent') | float(0) | round(1) }}"
+      pizzakalkylator_salt_procent:
+        unit_of_measurement: bageriprocent
+        value_template: "{{ states('input_number.pizzakalkylator_salt') | float(0) / states('sensor.pizzakalkylator_total_procent') | float(0) | round(1) }}"
+      pizzakalkylator_mjol_procent:
+        value_template: "{{ states('input_number.pizzakalkylator_mjol') | float(0) / states('sensor.pizzakalkylator_total_procent') | float(0) | round(1) }}"
+      pizzakalkylator_hydrering_vikt:
+        unit_of_measurement: g
+        value_template: "{{ ((states.sensor.pizzakalkylator_hydrering_procent.state | float) * (states.sensor.pizzakalkylator_total_degvikt.state | float)) | round(0) }}"
+      pizzakalkylator_jast_vikt:
+        unit_of_measurement: g
+        value_template: "{{ ((states.sensor.pizzakalkylator_jast_procent.state | float) * (states.sensor.pizzakalkylator_total_degvikt.state | float)) | round(2) }}"
+      pizzakalkylator_salt_vikt:
+        unit_of_measurement: g
+        value_template: "{{ ((states.sensor.pizzakalkylator_salt_procent.state | float) * (states.sensor.pizzakalkylator_total_degvikt.state | float)) | round(1) }}"
+      pizzakalkylator_mjol_vikt:
+        unit_of_measurement: g
+        value_template: "{{ ((states.sensor.pizzakalkylator_mjol_procent.state | float) * (states.sensor.pizzakalkylator_total_degvikt.state | float)) | round(0) }}"
+      pizzakalkylator_antal_pizzor_utan_decimal:
+        value_template: "{{ states('input_number.pizzakalkylator_antal_pizzor')|int}}"
+        unit_of_measurement: st
+      pizzakalkylator_degvikt_utan_decimal:
+        value_template: "{{ states('input_number.pizzakalkylator_degvikt')|int}}"
+        unit_of_measurement: g
+      pizzakalkylator_hydrering_utan_decimal:
+        value_template: "{{ states('input_number.pizzakalkylator_hydrering')|int}}"
+        unit_of_measurement: '%'
+      pizzakalkylator_mjol_procent_avrundat:
+        value_template: "{{ ((states('sensor.pizzakalkylator_mjol_vikt')|float) * 100 / (states('sensor.pizzakalkylator_total_degvikt')|float))|round(2) }}"
+        unit_of_measurement: '%'
+      pizzakalkylator_hydrering_procent_avrundat:
+        value_template: "{{ ((states('sensor.pizzakalkylator_hydrering_vikt')|float) * 100 / (states('sensor.pizzakalkylator_total_degvikt')|float))|round(2) }}"
+        unit_of_measurement: '%'
+      pizzakalkylator_salt_procent_avrundat:
+        value_template: "{{ ((states('sensor.pizzakalkylator_salt_vikt')|float) * 100 / (states('sensor.pizzakalkylator_total_degvikt')|float))|round(2) }}"
+        unit_of_measurement: '%'
+      pizzakalkylator_jast_procent_avrundat:
+        value_template: "{{ ((states('sensor.pizzakalkylator_jast_vikt')|float) * 100 / (states('sensor.pizzakalkylator_total_degvikt')|float))|round(3) }}"
+        unit_of_measurement: '%'         
+      pizzakalkylator_kalkylerad_jast:          
+        value_template: >-
+           {%- if is_state('input_select.rumstemperatur_rullgardin', '19 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_19_grader', '12 h') -%} 0.175
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '19 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_19_grader', '13.5 h') -%} 0.15
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '19 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_19_grader', '15 h') -%} 0.125
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '19 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_19_grader', '17 h') -%} 0.1
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '19 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_19_grader', '21 h') -%} 0.075
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '19 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_19_grader', '23 h') -%} 0.04
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '19 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_19_grader', '30 h') -%} 0.025
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '19 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_19_grader', '33.5 h') -%} 0.015
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '21 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_21_grader', '10 h') -%} 0.175
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '21 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_21_grader', '11 h') -%} 0.15
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '21 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_21_grader', '12 h') -%} 0.125
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '21 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_21_grader', '14 h') -%} 0.1
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '21 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_21_grader', '17 h') -%} 0.075
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '21 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_21_grader', '19 h') -%} 0.04
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '21 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_21_grader', '24 h') -%} 0.025
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '21 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_21_grader', '27 h') -%} 0.015
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '23 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_23_grader', '8 h') -%} 0.175
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '23 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_23_grader', '9 h') -%} 0.15
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '23 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_23_grader', '9.5 h') -%} 0.125
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '23 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_23_grader', '11 h') -%} 0.1
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '23 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_23_grader', '13.5 h') -%} 0.075
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '23 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_23_grader', '15 h') -%} 0.04
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '23 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_23_grader', '19 h') -%} 0.025
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '23 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_23_grader', '21 h') -%} 0.015
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '25 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_25_grader', '6 h') -%} 0.175
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '25 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_25_grader', '6.5 h') -%} 0.15
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '25 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_25_grader', '7 h') -%} 0.125
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '25 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_25_grader', '8.5 h') -%} 0.1
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '25 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_25_grader', '10 h') -%} 0.075
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '25 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_25_grader', '12 h') -%} 0.04
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '25 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_25_grader', '16 h') -%} 0.025
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '25 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_25_grader', '18 h') -%} 0.015
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '5 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_5_grader', '130 h') -%} 0.175
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '5 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_5_grader', '145 h') -%} 0.15
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '5 °C')
+           and is_state('input_select.pizzakalkylator_jastid_vid_5_grader', '166 h') -%} 0.125
+           {%- else -%} **data saknas**
+           {%- endif %}
+        unit_of_measurement: '%'
