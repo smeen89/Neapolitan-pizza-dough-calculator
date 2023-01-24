@@ -23,7 +23,7 @@
 <b>4.</b> Lovelace UI card yaml code - this is the code for the user interface and goes in your lovelace view.<br>
 
  <h2>Some quick notes on how I make a pizza dough:</h2><br>
- <b>Basic settings to get started that works well with Caputo Pizzeria flour:</b><br>
+ <b>Basic settings to get started that works well with Caputo Pizzeria flour:</b><br><br>
 
 <b>Jästemperatur:</b> 21 °C<br>
 <b>Jästid:</b> 24 h<br>
@@ -44,7 +44,7 @@
 
 For video demonstration and great ideas see this reddit thread: https://www.reddit.com/r/homeassistant/comments/10k28wu/i_made_a_neapolitan_pizza_dough_calculator_with/<br><br>
 
-
+<b>Additional notes:</b><br>
 <i>*note 1: The yeast is calculated based on fresh yeast. I'm from Sweden and use Kronjäst blå. Other brands or yeast types may give varying results.</i><br>
 
-<i>**note 2: The input helpers, sensors and lovelace UI card yaml code have swedish names and terms.</i> <br>
+<i>**note 2: The input helpers, sensors and lovelace UI card yaml code have swedish names and terms. If you change any entity-id of the helpers, please make sure to change the name in the configuration.yaml as well.</i> <br>
