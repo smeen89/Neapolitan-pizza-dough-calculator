@@ -1,0 +1,101 @@
+Följande hjälpare måste skapas för att kalkylatorn ska fungera:
+
+typ: nummer
+namn: pizzakalkylator_antal_pizzor
+minsta värde: 0
+maximalt värde: valfritt
+steglängd: 1
+måttenhet: valfritt
+
+typ: nummer
+namn: pizzakalkylator_degvikt
+minsta värde: 0
+maximalt värde: valfritt
+steglängd: 5
+måttenhet: valfritt
+
+typ: nummer
+namn: pizzakalkylator_hydrering
+minsta värde: 0
+maximalt värde: 100
+steglängd: 1
+måttenhet: valfritt
+
+typ: nummer
+namn: pizzakalkylator_mjol
+(ska alltid vara satt till 100)
+minsta värde: 99,9
+maximalt värde: 100
+steglängd: 0,001
+måttenhet: valfritt
+
+typ: nummer
+namn: pizzakalkylator_salt
+minsta värde: 0
+maximalt värde: 4
+steglängd: 0,1
+måttenhet: valfritt
+
+typ: rullgardinsmeny
+namn: rumstemperatur_rullgardin 
+alternativ:
+5 °C
+19 °C
+21 °C
+23 °C
+25 °C
+
+typ: rullgardinsmeny
+namn: pizzakalkylator_jastid_vid_5_grader
+alternativ:
+130 h
+145 h
+166 h
+
+typ: rullgardinsmeny
+namn: pizzakalkylator_jastid_vid_19_grader
+alternativ:
+12 h
+13.5 h
+15 h
+17 h
+21 h
+23 h
+30 h
+33.5 h
+
+typ: rullgardinsmeny
+namn: pizzakalkylator_jastid_vid_21_grader
+alternativ:
+10 h
+11 h
+12 h
+14 h
+17 h
+19 h
+24 h
+27 h
+
+typ: rullgardinsmeny
+namn: pizzakalkylator_jastid_vid_23_grader
+alternativ:
+8 h
+9 h
+9.5 h
+11 h
+13.5 h
+15 h
+19 h
+21 h
+
+typ: rullgardinsmeny
+namn: pizzakalkylator_jastid_vid_25_grader
+alternativ:
+6 h
+6.5 h
+7 h
+8.5 h
+10 h
+12 h
+16 h
+18 h
