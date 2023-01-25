@@ -26,7 +26,7 @@ https://github.com/thomasloven/lovelace-card-mod<br>
  <h3>This repository consists of an English and a Swedish version each containing 3 files</h3>
  <i> Choose either the EN or SE version. Don't mix them!</i><br>
  
-<h3>Swedish versison</h3>
+<h3>Swedish version</h3>
 <b>1. SE Input Helpers</b><br>
 A list of the input helpers (type, names and settings) that needs to be created in your installation in order for you to be able to input data to the calculator.<br><br>
 <b>2. SE Yaml code</b><br>
@@ -34,7 +34,7 @@ The code needs to go in your configuration.yaml file. This sets up the calculati
 <b>3. SE Lovelace UI card yaml code</b><br>
 This is the code for the user interface and goes in your lovelace view.<br>
 
-<h3>English versison</h3>
+<h3>English version</h3>
 <b>1. EN Input Helpers</b><br>
 A list of the input helpers (type, names and settings) that needs to be created in your installation in order for you to be able to input data to the calculator.<br><br>
 <b>2. EN Yaml code</b><br>
@@ -45,9 +45,9 @@ This is the code for the user interface and goes in your lovelace view.<br>
  <h2>Some quick notes on how I make a pizza dough</h2><br>
  <b>Basic settings to get started that works well with Caputo Pizzeria flour</b><br><br>
 
-<b>Jästemperatur:</b> 21 °C<br>
-<b>Jästid:</b> 24 h<br>
-<b>Vatten:</b> 66%<br>
+<b>Proof temp:</b> 21 °C<br>
+<b>Proof time:</b> 24 h<br>
+<b>Water:</b> 66%<br>
 <b>Salt:</b> 3%<br>
  
  <b>1.</b> Start by disolving the yeast in lukewarm water, add salt and flour and mix the ingredients until they form a rough dough. No need for stretcing or kneeding. This is a "no knead dough"<br>
