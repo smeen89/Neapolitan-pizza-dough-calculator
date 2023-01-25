@@ -818,7 +818,7 @@ cards:
           [[[
             return Math.round(states['sensor.pizzacalculator_total_doughweight'].state) + " g";
           ]]]
-        name: RECIPEE
+        name: RECIPE
         tap_action:
           action: none
         hold_action:
