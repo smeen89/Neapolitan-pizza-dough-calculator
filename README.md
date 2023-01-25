@@ -12,11 +12,11 @@ https://github.com/thomasloven/lovelace-card-mod<br>
 <h2>This calculator aims to:</h2>
 
 <b>1. Simplify scaling of a dough recipe by automaticly calculate dough weight based on:</b> <br>
-  <b>a)</b> input of number of pizzas and<br>
+  <b>a)</b> number of pizzas<br>
   <b>b)</b> weight of each pizza
   
  <b>2. Calculate required amount of fresh yeast* based on:</b><br>
-   <b>a)</b> surrounding temperature of the dough throughout the fermentation i.e room temperature (or fridge temperature)<br>
+   <b>a)</b> surrounding temperature of the dough throughout the fermentation i.e room temperature or fridge temperature<br>
    <b>b)</b> time until baking out the pizzas.<br>
    
  <b>3. Make it easy for the user to change hydration and salt levels to encourage experimentation.</b>
