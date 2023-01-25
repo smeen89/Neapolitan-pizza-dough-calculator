@@ -2,14 +2,14 @@
 
 ![kalkylator](https://user-images.githubusercontent.com/106514124/214378704-5c25df76-21cf-44c7-9757-b0146867b47e.png)<br>
 
-<h2>Prerequisits:</h2>
+<h2>Prerequisits</h2>
 I have used the following HACS addons in order to setup the calculator
 
 https://github.com/custom-cards/button-card<br>
 https://github.com/custom-cards/stack-in-card<br>
 https://github.com/thomasloven/lovelace-card-mod<br>
 
-<h2>This calculator aims to:</h2>
+<h2>This calculator aims to</h2>
 
 <b>1. Simplify scaling of a dough recipe by automaticly calculate dough weight based on:</b> <br>
   <b>a)</b> number of pizzas<br>
@@ -23,10 +23,10 @@ https://github.com/thomasloven/lovelace-card-mod<br>
  
  <h2>Installation</h2>
  
- <h3>This repository consists of an English and a Swedish version each containing 3 files:</h3>
+ <h3>This repository consists of an English and a Swedish version each containing 3 files</h3>
  <i> Choose either the EN or SE version. Don't mix them!</i><br>
  
-<h3>Swedish versison:</h3>
+<h3>Swedish versison</h3>
 <b>1. SE Input Helpers</b><br>
 A list of the input helpers (type, names and settings) that needs to be created in your installation in order for you to be able to input data to the calculator.<br><br>
 <b>2. SE Yaml code</b><br>
@@ -34,7 +34,7 @@ The code needs to go in your configuration.yaml file. This sets up the calculati
 <b>3. SE Lovelace UI card yaml code</b><br>
 This is the code for the user interface and goes in your lovelace view.<br>
 
-<h3>English versison:</h3>
+<h3>English versison</h3>
 <b>1. EN Input Helpers</b><br>
 A list of the input helpers (type, names and settings) that needs to be created in your installation in order for you to be able to input data to the calculator.<br><br>
 <b>2. EN Yaml code</b><br>
@@ -42,8 +42,8 @@ The code needs to go in your configuration.yaml file. This sets up the calculati
 <b>3. EN Lovelace UI card yaml code</b><br>
 This is the code for the user interface and goes in your lovelace view.<br>
 
- <h2>Some quick notes on how I make a pizza dough:</h2><br>
- <b>Basic settings to get started that works well with Caputo Pizzeria flour:</b><br><br>
+ <h2>Some quick notes on how I make a pizza dough</h2><br>
+ <b>Basic settings to get started that works well with Caputo Pizzeria flour</b><br><br>
 
 <b>Jästemperatur:</b> 21 °C<br>
 <b>Jästid:</b> 24 h<br>
