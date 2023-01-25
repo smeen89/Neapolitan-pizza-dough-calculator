@@ -1,6 +1,6 @@
 <h1>Neapolitan pizza dough calculator for Home Assistant</h1><br>
 
-![EN](https://user-images.githubusercontent.com/106514124/214527109-94c0348d-859f-41d2-83ea-7d57da702fe8.png)    ![SE](https://user-images.githubusercontent.com/106514124/214527268-2072c149-29e9-4e71-b3eb-2d4985c2870b.PNG)
+![EN](https://user-images.githubusercontent.com/106514124/214542674-2d3f13ad-4e65-410f-80d9-a438a34f41f9.png)    ![SE](https://user-images.githubusercontent.com/106514124/214527268-2072c149-29e9-4e71-b3eb-2d4985c2870b.PNG)
 
 <h2>Prerequisits</h2>
 I have used the following HACS addons in order to setup the calculator
