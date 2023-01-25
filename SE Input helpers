@@ -1,4 +1,5 @@
 Följande hjälpare måste skapas för att kalkylatorn ska fungera:
+Det är otroligt viktigt att namnen och värdena är skrivna precis som de står här då jag använder vilkorsbaserade kort baserade på dessa värden.
 
 typ: nummer
 namn: pizzakalkylator_antal_pizzor
