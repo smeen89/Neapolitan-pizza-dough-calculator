@@ -1,6 +1,6 @@
 The following input helpers needs to be created, they enable you to input the necessary settings in the lovelace UI for the calculator to do its work:
 Take note that it's extremely inportant that the names and values are exactly correct with spaces and everything since 
-I use conditional card with conditions based on these values.
+the setup uses conditional cards with conditions based on these exact values.
 
 type: input_number
 name: pizzacalculator_number_of_pizza
