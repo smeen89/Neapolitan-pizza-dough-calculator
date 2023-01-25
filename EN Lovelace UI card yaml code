@@ -1,0 +1,1026 @@
+type: custom:stack-in-card
+keep:
+  background: false
+  box_shadow: false
+  margin: true
+  border_radius: true
+  outer_padding: true
+cards:
+  - type: vertical-stack
+    cards:
+      - type: picture
+        image: local/pizza.jpg
+        tap_action:
+          action: none
+        hold_action:
+          action: none
+      - type: custom:button-card
+        entity: input_number.pizzacalculator_number_of_pizza
+        show_name: true
+        show_state: false
+        show_icon: false
+        name: NEAPOLITAN PIZZA CALCULATOR
+        tap_action:
+          action: none
+        hold_action:
+          action: none
+        styles:
+          name:
+            - font-size: 26px
+            - font-weight: 800
+          card:
+            - height: 40px
+            - padding-bottom: 0px
+      - type: custom:button-card
+        entity: input_number.pizzacalculator_number_of_pizza
+        show_name: true
+        show_state: false
+        show_icon: false
+        name: SETTINGS
+        tap_action:
+          action: none
+        hold_action:
+          action: none
+        styles:
+          name:
+            - font-size: 16px
+            - font-weight: 600
+        card:
+          - height: 20px
+      - square: false
+        columns: 2
+        type: grid
+        cards:
+          - type: custom:button-card
+            entity: input_number.pizzacalculator_number_of_pizza
+            show_name: true
+            show_state: false
+            show_icon: false
+            show_label: false
+            name: Proof temp
+            tap_action:
+              action: none
+            hold_action:
+              action: none
+            styles:
+              name:
+                - font-weight: 400
+              label:
+                - font-size: 10px
+                - font-weight: 400
+              card:
+                - height: 20px
+          - type: custom:button-card
+            entity: input_number.pizzacalculator_number_of_pizza
+            show_name: true
+            show_state: false
+            show_icon: false
+            show_label: false
+            name: Proof time
+            tap_action:
+              action: none
+            hold_action:
+              action: none
+            styles:
+              name:
+                - font-weight: 400
+              label:
+                - font-size: 10px
+                - font-weight: 400
+              card:
+                - height: 20px
+      - square: false
+        columns: 2
+        type: grid
+        cards:
+          - square: false
+            columns: 3
+            type: grid
+            cards:
+              - type: custom:button-card
+                entity: input_select.roomtemperature
+                show_name: false
+                show_state: false
+                show_icon: true
+                icon: mdi:minus
+                size: 25%
+                tap_action:
+                  action: call-service
+                  service: input_select.select_previous
+                  service_data:
+                    entity_id: input_select.roomtemperature
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - height: 30px
+              - type: custom:button-card
+                entity: input_select.roomtemperature
+                show_name: false
+                show_state: true
+                show_icon: false
+                tap_action:
+                  action: none
+                hold_action:
+                  action: none
+                styles:
+                  state:
+                    - font-size: 14px
+                    - font-weight: 500
+                  card:
+                    - height: 30px
+              - type: custom:button-card
+                entity: input_select.roomtemperature
+                show_name: false
+                show_state: false
+                show_icon: true
+                icon: mdi:plus
+                size: 25%
+                tap_action:
+                  action: call-service
+                  service: input_select.select_next
+                  service_data:
+                    entity_id: input_select.roomtemperature
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - height: 30px
+          - type: conditional
+            conditions:
+              - entity: input_select.roomtemperature
+                state: 19 °C
+            card:
+              square: false
+              columns: 3
+              type: grid
+              cards:
+                - type: custom:button-card
+                  entity: input_select.pizzacalculator_prooftime_at_19_degrees
+                  show_name: false
+                  show_state: false
+                  show_icon: true
+                  icon: mdi:minus
+                  size: 25%
+                  tap_action:
+                    action: call-service
+                    service: input_select.select_previous
+                    service_data:
+                      entity_id: input_select.pizzacalculator_prooftime_at_19_degrees
+                  hold_action:
+                    action: none
+                  styles:
+                    card:
+                      - height: 30px
+                  style: |
+                    ha-card {
+                      box-shadow: none;
+                    }
+                - type: custom:button-card
+                  entity: input_select.pizzacalculator_prooftime_at_19_degrees
+                  show_name: false
+                  show_state: true
+                  show_icon: false
+                  tap_action:
+                    action: none
+                  hold_action:
+                    action: none
+                  styles:
+                    state:
+                      - font-size: 14px
+                      - font-weight: 500
+                    card:
+                      - height: 30px
+                  style: |
+                    ha-card {
+                      box-shadow: none;
+                    }
+                - type: custom:button-card
+                  entity: input_select.pizzacalculator_prooftime_at_19_degrees
+                  show_name: false
+                  show_state: false
+                  show_icon: true
+                  icon: mdi:plus
+                  size: 25%
+                  tap_action:
+                    action: call-service
+                    service: input_select.select_next
+                    service_data:
+                      entity_id: input_select.pizzacalculator_prooftime_at_19_degrees
+                  hold_action:
+                    action: none
+                  styles:
+                    card:
+                      - height: 30px
+                  style: |
+                    ha-card {
+                      box-shadow: none;
+                    }
+          - type: conditional
+            conditions:
+              - entity: input_select.roomtemperature
+                state: 21 °C
+            card:
+              square: false
+              columns: 3
+              type: grid
+              cards:
+                - type: custom:button-card
+                  entity: input_select.pizzacalculator_prooftime_at_21_degrees
+                  show_name: false
+                  show_state: false
+                  show_icon: true
+                  icon: mdi:minus
+                  size: 25%
+                  tap_action:
+                    action: call-service
+                    service: input_select.select_previous
+                    service_data:
+                      entity_id: input_select.pizzacalculator_prooftime_at_21_degrees
+                  hold_action:
+                    action: none
+                  styles:
+                    card:
+                      - height: 30px
+                  style: |
+                    ha-card {
+                      box-shadow: none;
+                    }
+                - type: custom:button-card
+                  entity: input_select.pizzacalculator_prooftime_at_21_degrees
+                  show_name: false
+                  show_state: true
+                  show_icon: false
+                  tap_action:
+                    action: none
+                  hold_action:
+                    action: none
+                  styles:
+                    state:
+                      - font-size: 14px
+                      - font-weight: 500
+                    card:
+                      - height: 30px
+                  style: |
+                    ha-card {
+                      box-shadow: none;
+                    }
+                - type: custom:button-card
+                  entity: input_select.pizzacalculator_prooftime_at_21_degrees
+                  show_name: false
+                  show_state: false
+                  show_icon: true
+                  icon: mdi:plus
+                  size: 25%
+                  tap_action:
+                    action: call-service
+                    service: input_select.select_next
+                    service_data:
+                      entity_id: input_select.pizzacalculator_prooftime_at_21_degrees
+                  hold_action:
+                    action: none
+                  styles:
+                    card:
+                      - height: 30px
+                  style: |
+                    ha-card {
+                      box-shadow: none;
+                    }
+          - type: conditional
+            conditions:
+              - entity: input_select.roomtemperature
+                state: 23 °C
+            card:
+              square: false
+              columns: 3
+              type: grid
+              cards:
+                - type: custom:button-card
+                  entity: input_select.pizzacalculator_prooftime_at_23_degrees
+                  show_name: false
+                  show_state: false
+                  show_icon: true
+                  icon: mdi:minus
+                  size: 25%
+                  tap_action:
+                    action: call-service
+                    service: input_select.select_previous
+                    service_data:
+                      entity_id: input_select.pizzacalculator_prooftime_at_23_degrees
+                  hold_action:
+                    action: none
+                  styles:
+                    card:
+                      - height: 30px
+                  style: |
+                    ha-card {
+                      box-shadow: none;
+                    }
+                - type: custom:button-card
+                  entity: input_select.pizzacalculator_prooftime_at_23_degrees
+                  show_name: false
+                  show_state: true
+                  show_icon: false
+                  tap_action:
+                    action: none
+                  hold_action:
+                    action: none
+                  styles:
+                    state:
+                      - font-size: 14px
+                      - font-weight: 500
+                    card:
+                      - height: 30px
+                  style: |
+                    ha-card {
+                      box-shadow: none;
+                    }
+                - type: custom:button-card
+                  entity: input_select.pizzacalculator_prooftime_at_23_degrees
+                  show_name: false
+                  show_state: false
+                  show_icon: true
+                  icon: mdi:plus
+                  size: 25%
+                  tap_action:
+                    action: call-service
+                    service: input_select.select_next
+                    service_data:
+                      entity_id: input_select.pizzacalculator_prooftime_at_23_degrees
+                  hold_action:
+                    action: none
+                  styles:
+                    card:
+                      - height: 30px
+                  style: |
+                    ha-card {
+                      box-shadow: none;
+                    }
+          - type: conditional
+            conditions:
+              - entity: input_select.roomtemperature
+                state: 25 °C
+            card:
+              square: false
+              columns: 3
+              type: grid
+              cards:
+                - type: custom:button-card
+                  entity: input_select.pizzacalculator_prooftime_at_25_degrees
+                  show_name: false
+                  show_state: false
+                  show_icon: true
+                  icon: mdi:minus
+                  size: 25%
+                  tap_action:
+                    action: call-service
+                    service: input_select.select_previous
+                    service_data:
+                      entity_id: input_select.pizzacalculator_prooftime_at_25_degrees
+                  hold_action:
+                    action: none
+                  styles:
+                    card:
+                      - height: 30px
+                  style: |
+                    ha-card {
+                      box-shadow: none;
+                    }
+                - type: custom:button-card
+                  entity: input_select.pizzacalculator_prooftime_at_25_degrees
+                  show_name: false
+                  show_state: true
+                  show_icon: false
+                  tap_action:
+                    action: none
+                  hold_action:
+                    action: none
+                  styles:
+                    state:
+                      - font-size: 14px
+                      - font-weight: 500
+                    card:
+                      - height: 30px
+                  style: |
+                    ha-card {
+                      box-shadow: none;
+                    }
+                - type: custom:button-card
+                  entity: input_select.pizzacalculator_prooftime_at_25_degrees
+                  show_name: false
+                  show_state: false
+                  show_icon: true
+                  icon: mdi:plus
+                  size: 25%
+                  tap_action:
+                    action: call-service
+                    service: input_select.select_next
+                    service_data:
+                      entity_id: input_select.pizzacalculator_prooftime_at_25_degrees
+                  hold_action:
+                    action: none
+                  styles:
+                    card:
+                      - height: 30px
+                  style: |
+                    ha-card {
+                      box-shadow: none;
+                    }
+          - type: conditional
+            conditions:
+              - entity: input_select.roomtemperature
+                state: 5 °C
+            card:
+              square: false
+              columns: 3
+              type: grid
+              cards:
+                - type: custom:button-card
+                  entity: input_select.pizzacalculator_prooftime_at_5_degrees
+                  show_name: false
+                  show_state: false
+                  show_icon: true
+                  icon: mdi:minus
+                  size: 25%
+                  tap_action:
+                    action: call-service
+                    service: input_select.select_previous
+                    service_data:
+                      entity_id: input_select.pizzacalculator_prooftime_at_5_degrees
+                  hold_action:
+                    action: none
+                  styles:
+                    card:
+                      - height: 30px
+                  style: |
+                    ha-card {
+                      box-shadow: none;
+                    }
+                - type: custom:button-card
+                  entity: input_select.pizzacalculator_prooftime_at_5_degrees
+                  show_name: false
+                  show_state: true
+                  show_icon: false
+                  tap_action:
+                    action: none
+                  hold_action:
+                    action: none
+                  styles:
+                    state:
+                      - font-size: 14px
+                      - font-weight: 500
+                    card:
+                      - height: 30px
+                  style: |
+                    ha-card {
+                      box-shadow: none;
+                    }
+                - type: custom:button-card
+                  entity: input_select.pizzacalculator_prooftime_at_5_degrees
+                  show_name: false
+                  show_state: false
+                  show_icon: true
+                  icon: mdi:plus
+                  size: 25%
+                  tap_action:
+                    action: call-service
+                    service: input_select.select_next
+                    service_data:
+                      entity_id: input_select.pizzacalculator_prooftime_at_5_degrees
+                  hold_action:
+                    action: none
+                  styles:
+                    card:
+                      - height: 30px
+                  style: |
+                    ha-card {
+                      box-shadow: none;
+                    }
+      - square: false
+        columns: 2
+        type: grid
+        cards:
+          - type: custom:button-card
+            entity: input_number.pizzacalculator_number_of_pizza
+            show_name: true
+            show_state: false
+            show_icon: false
+            show_label: false
+            name: Number of pizzas
+            tap_action:
+              action: none
+            hold_action:
+              action: none
+            styles:
+              name:
+                - font-weight: 400
+              label:
+                - font-size: 10px
+                - font-weight: 400
+              card:
+                - height: 20px
+                - margin-top: 10px
+          - type: custom:button-card
+            entity: input_number.pizzacalculator_number_of_pizza
+            show_name: true
+            show_state: false
+            show_icon: false
+            show_label: false
+            name: Weight per pizza
+            tap_action:
+              action: none
+            hold_action:
+              action: none
+            styles:
+              name:
+                - font-weight: 400
+              label:
+                - font-size: 10px
+                - font-weight: 400
+              card:
+                - height: 20px
+                - margin-top: 10px
+      - square: false
+        columns: 2
+        type: grid
+        cards:
+          - square: false
+            columns: 3
+            type: grid
+            cards:
+              - type: custom:button-card
+                entity: input_number.pizzacalculator_number_of_pizza
+                show_name: false
+                show_state: false
+                show_icon: true
+                icon: mdi:minus
+                size: 25%
+                tap_action:
+                  action: call-service
+                  service: input_number.decrement
+                  service_data:
+                    entity_id: input_number.pizzacalculator_number_of_pizza
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - height: 30px
+              - type: custom:button-card
+                entity: sensor.pizzacalculator_number_of_pizza_without_decimal
+                show_name: false
+                show_state: true
+                show_icon: false
+                tap_action:
+                  action: none
+                hold_action:
+                  action: none
+                styles:
+                  state:
+                    - font-size: 14px
+                    - font-weight: 500
+                  card:
+                    - height: 30px
+              - type: custom:button-card
+                entity: input_number.pizzacalculator_doughweight
+                show_name: false
+                show_state: false
+                show_icon: true
+                icon: mdi:plus
+                size: 25%
+                tap_action:
+                  action: call-service
+                  service: input_number.increment
+                  service_data:
+                    entity_id: input_number.pizzacalculator_number_of_pizza
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - height: 30px
+          - square: false
+            columns: 3
+            type: grid
+            cards:
+              - type: custom:button-card
+                entity: input_number.pizzacalculator_doughweight
+                show_name: false
+                show_state: false
+                show_icon: true
+                icon: mdi:minus
+                size: 25%
+                tap_action:
+                  action: call-service
+                  service: input_number.decrement
+                  service_data:
+                    entity_id: input_number.pizzacalculator_doughweight
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - height: 30px
+              - type: custom:button-card
+                entity: sensor.pizzacalculator_doughweight_without_decimal
+                show_name: false
+                show_state: true
+                show_icon: false
+                tap_action:
+                  action: none
+                hold_action:
+                  action: none
+                styles:
+                  state:
+                    - font-size: 14px
+                    - font-weight: 500
+                  card:
+                    - height: 30px
+              - type: custom:button-card
+                entity: input_number.pizzacalculator_doughweight
+                show_name: false
+                show_state: false
+                show_icon: true
+                icon: mdi:plus
+                size: 25%
+                tap_action:
+                  action: call-service
+                  service: input_number.increment
+                  service_data:
+                    entity_id: input_number.pizzacalculator_doughweight
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - height: 30px
+      - square: false
+        columns: 2
+        type: grid
+        cards:
+          - type: custom:button-card
+            entity: input_number.pizzacalculator_number_of_pizza
+            show_name: true
+            show_state: false
+            show_icon: false
+            show_label: true
+            name: Water
+            label: Input bakers percent
+            tap_action:
+              action: none
+            hold_action:
+              action: none
+            styles:
+              name:
+                - font-weight: 400
+              label:
+                - font-size: 10px
+                - font-weight: 400
+                - margin-top: 6px
+              card:
+                - height: 50px
+                - padding-top: 20px
+          - type: custom:button-card
+            entity: input_number.pizzacalculator_number_of_pizza
+            show_name: true
+            show_state: false
+            show_icon: false
+            show_label: true
+            name: Salt
+            label: Input bakers percent
+            tap_action:
+              action: none
+            hold_action:
+              action: none
+            styles:
+              name:
+                - font-weight: 400
+              label:
+                - font-size: 10px
+                - font-weight: 400
+                - margin-top: 6px
+              card:
+                - height: 50px
+                - padding-top: 20px
+      - square: false
+        columns: 2
+        type: grid
+        cards:
+          - square: false
+            columns: 3
+            type: grid
+            cards:
+              - type: custom:button-card
+                entity: input_number.pizzacalculator_water
+                show_name: false
+                show_state: false
+                show_icon: true
+                icon: mdi:minus
+                size: 25%
+                tap_action:
+                  action: call-service
+                  service: input_number.decrement
+                  service_data:
+                    entity_id: input_number.pizzacalculator_water
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - height: 30px
+              - type: custom:button-card
+                entity: sensor.pizzacalculator_water_without_decimal
+                show_name: false
+                show_state: true
+                show_icon: false
+                tap_action:
+                  action: none
+                hold_action:
+                  action: none
+                styles:
+                  state:
+                    - font-size: 14px
+                    - font-weight: 500
+                  card:
+                    - height: 30px
+              - type: custom:button-card
+                entity: input_number.pizzacalculator_water
+                show_name: false
+                show_state: false
+                show_icon: true
+                icon: mdi:plus
+                size: 25%
+                tap_action:
+                  action: call-service
+                  service: input_number.increment
+                  service_data:
+                    entity_id: input_number.pizzacalculator_water
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - height: 30px
+          - square: false
+            columns: 3
+            type: grid
+            cards:
+              - type: custom:button-card
+                entity: input_number.pizzacalculator_salt
+                show_name: false
+                show_state: false
+                show_icon: true
+                icon: mdi:minus
+                size: 25%
+                tap_action:
+                  action: call-service
+                  service: input_number.decrement
+                  service_data:
+                    entity_id: input_number.pizzacalculator_salt
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - height: 30px
+              - type: custom:button-card
+                entity: input_number.pizzacalculator_salt
+                show_name: false
+                show_state: true
+                show_icon: false
+                tap_action:
+                  action: none
+                hold_action:
+                  action: none
+                styles:
+                  state:
+                    - font-size: 14px
+                    - font-weight: 500
+                  card:
+                    - height: 30px
+              - type: custom:button-card
+                entity: input_number.pizzacalculator_salt
+                show_name: false
+                show_state: false
+                show_icon: true
+                icon: mdi:plus
+                size: 25%
+                tap_action:
+                  action: call-service
+                  service: input_number.increment
+                  service_data:
+                    entity_id: input_number.pizzacalculator_salt
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - height: 30px
+      - type: custom:button-card
+        entity: input_number.pizzacalculator_number_of_pizza
+        show_name: true
+        show_state: false
+        show_icon: false
+        show_label: true
+        label: |
+          [[[
+            return Math.round(states['sensor.pizzacalculator_total_doughweight'].state) + " g";
+          ]]]
+        name: RECIPEE
+        tap_action:
+          action: none
+        hold_action:
+          action: none
+        styles:
+          name:
+            - font-size: 16px
+            - font-weight: 600
+            - margin-top: 20px
+          label:
+            - font-size: 14px
+            - font-weight: 500
+            - margin-top: 5px
+          card:
+            - height: 70px
+            - border-top: 1px dashed black
+            - border-radius: 0px
+            - margin-top: 20px
+      - square: false
+        columns: 4
+        type: grid
+        cards:
+          - type: custom:button-card
+            entity: sensor.pizzacalculator_flour_weight
+            show_name: true
+            name: Flour
+            show_state: true
+            show_icon: false
+            tap_action:
+              action: none
+            hold_action:
+              action: none
+            styles:
+              name:
+                - font-weight: 400
+              state:
+                - margin-top: 10px
+                - font-size: 14px
+                - font-weight: 500
+              card:
+                - margin-top: '-10px'
+          - type: custom:button-card
+            entity: sensor.pizzacalculator_water_weight
+            show_name: true
+            name: Water
+            show_state: true
+            show_icon: false
+            tap_action:
+              action: none
+            hold_action:
+              action: none
+            styles:
+              name:
+                - font-weight: 400
+              state:
+                - margin-top: 10px
+                - font-size: 14px
+                - font-weight: 500
+              card:
+                - margin-top: '-10px'
+          - type: custom:button-card
+            entity: sensor.pizzacalculator_salt_weight
+            show_name: true
+            name: Salt
+            show_state: true
+            show_icon: false
+            tap_action:
+              action: none
+            hold_action:
+              action: none
+            styles:
+              name:
+                - font-weight: 400
+              state:
+                - margin-top: 10px
+                - font-size: 14px
+                - font-weight: 500
+              card:
+                - margin-top: '-10px'
+          - type: custom:button-card
+            entity: sensor.pizzacalculator_yeast_weight
+            show_name: true
+            name: Yeast
+            show_state: true
+            show_icon: false
+            tap_action:
+              action: none
+            hold_action:
+              action: none
+            styles:
+              name:
+                - font-weight: 400
+              state:
+                - margin-top: 10px
+                - font-size: 14px
+                - font-weight: 500
+              card:
+                - margin-top: '-10px'
+      - type: custom:button-card
+        entity: input_number.pizzacalculator_number_of_pizza
+        show_name: true
+        show_state: false
+        show_icon: false
+        name: PERCENTAGES
+        tap_action:
+          action: none
+        hold_action:
+          action: none
+        styles:
+          name:
+            - font-size: 16px
+            - font-weight: 600
+          card:
+            - height: 60px
+            - border-top: 1px dashed black
+            - border-radius: 0px
+            - margin-top: 20px
+      - square: false
+        columns: 4
+        type: grid
+        cards:
+          - type: custom:button-card
+            entity: sensor.pizzacalculator_flour_percent_rounded
+            show_name: true
+            name: Flour
+            show_state: true
+            show_icon: false
+            tap_action:
+              action: none
+            hold_action:
+              action: none
+            styles:
+              name:
+                - font-weight: 400
+              state:
+                - margin-top: 10px
+                - font-size: 14px
+                - font-weight: 500
+              card:
+                - height: 50px
+                - margin-top: '-20px'
+                - margin-bottom: 20px
+          - type: custom:button-card
+            entity: sensor.pizzacalculator_water_percent_rounded
+            show_name: true
+            name: Water
+            show_state: true
+            show_icon: false
+            tap_action:
+              action: none
+            hold_action:
+              action: none
+            styles:
+              name:
+                - font-weight: 400
+              state:
+                - margin-top: 10px
+                - font-size: 14px
+                - font-weight: 500
+              card:
+                - height: 50px
+                - margin-top: '-20px'
+                - margin-bottom: 20px
+          - type: custom:button-card
+            entity: sensor.pizzacalculator_salt_percent_rounded
+            show_name: true
+            name: Salt
+            show_state: true
+            show_icon: false
+            tap_action:
+              action: none
+            hold_action:
+              action: none
+            styles:
+              name:
+                - font-weight: 400
+              state:
+                - margin-top: 10px
+                - font-size: 14px
+                - font-weight: 500
+              card:
+                - height: 50px
+                - margin-top: '-20px'
+                - margin-bottom: 20px
+          - type: custom:button-card
+            entity: sensor.pizzacalculator_yeast_percent_rounded
+            show_name: true
+            name: Yeast
+            show_state: true
+            show_icon: false
+            tap_action:
+              action: none
+            hold_action:
+              action: none
+            styles:
+              name:
+                - font-weight: 400
+              state:
+                - margin-top: 10px
+                - font-size: 14px
+                - font-weight: 500
+              card:
+                - height: 50px
+                - margin-top: '-20px'
+                - margin-bottom: 20px
