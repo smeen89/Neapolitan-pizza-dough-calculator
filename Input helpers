@@ -18,14 +18,14 @@ highest value: 100
 step length: 1
 unit of measurment: optional
 
-- input_number.pizzakalkylator_salt
+- input_number.pizzakalkylator_mjol
 (should always be set to 100)
 lowest value: 99,9
 highest value: 100
 step length: 0,001
 unit of measurment: optional
 
-- input_number.pizzakalkylator_mjol
+- input_number.pizzakalkylator_salt
 lowest value: 0
 highest value: 4
 step length: 0,1
