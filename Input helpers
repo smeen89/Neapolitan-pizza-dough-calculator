@@ -1,4 +1,4 @@
-The following input helpers needs to be created:
+The following input helpers needs to be created, they enable you to input the necessary settings in the lovelace UI for the calculator to do its work:
 
 - input_number.pizzakalkylator_antal_pizzor
 lowest value: 0
