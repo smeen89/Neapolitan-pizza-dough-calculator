@@ -32,7 +32,7 @@ sensor:
         value_template: "{{ ((states.sensor.pizzacalculator_flour_percent.state | float) * (states.sensor.pizzacalculator_total_doughweight.state | float)) | round(0) }}"
       pizzacalculator_number_of_pizza_without_decimal:
         value_template: "{{ states('input_number.pizzacalculator_number_of_pizza')|int}}"
-        unit_of_measurement: st
+        unit_of_measurement: pcs
       pizzacalculator_doughweight_without_decimal:
         value_template: "{{ states('input_number.pizzacalculator_doughweight')|int}}"
         unit_of_measurement: g
