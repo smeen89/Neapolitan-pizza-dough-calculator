@@ -21,12 +21,16 @@ https://github.com/thomasloven/lovelace-card-mod<br>
    
  <b>3. Make it easy for the user to change hydration and salt levels to encourage experimentation.</b>
  
- <h2>This repository consists of 4 main files:</h2>
-   
-<b>The 3 main files are:</b><br>
-<b>1.</b> Input Helpers - a list of the input helpers (names** and settings) that needs to be created in order for the calculator to work.<br>
-<b>2.</b> Yaml code - the code needs to go in your configuration.yaml file. This sets up the calculation and the sensors needed.<br>
-<b>3.</b> Lovelace UI card yaml code - this is the code for the user interface and goes in your lovelace view.<br>
+ <h2>Installation</h2>
+ 
+ <h3>This repository consists of 3 main files:</h3>
+ 
+<b>1. Input Helpers</b><br>
+A list of the input helpers (names** and settings) that needs to be created in your installation in order for you to be able to input data to the calculator.<br><br>
+<b>2. Yaml code</b><br>
+The code needs to go in your configuration.yaml file. This sets up the calculation parameters and creates the necessary sensors.<br><br>
+<b>3. Lovelace UI card yaml code</b><br>
+This is the code for the user interface and goes in your lovelace view.<br>
 
  <h2>Some quick notes on how I make a pizza dough:</h2><br>
  <b>Basic settings to get started that works well with Caputo Pizzeria flour:</b><br><br>
