@@ -45,8 +45,7 @@ https://github.com/thomasloven/lovelace-card-mod<br>
  <b>7.</b> Fold the dough over itself five times.<br>
  <b>8.</b> Now it's time for bulk fermentation. Cover dough and let it ferment.<br>
  <b>9.</b> Form into dough balls, cover and proof for remaining time.<br><br>
- <i>I usually let the dough bulk ferment for the first half of the time, and then proof for the rest of the time as individual dough balls.<br> 
- Please feel free to try out what you prefer.</i><br><br>
+ <i>I usually let the dough bulk ferment for the first half of the time, and then proof for the rest of the time as individual dough balls. Please feel free to try out what you prefer.</i><br><br>
 
 For video demonstration and great ideas see this reddit thread: https://www.reddit.com/r/homeassistant/comments/10k28wu/i_made_a_neapolitan_pizza_dough_calculator_with/<br><br>
 
