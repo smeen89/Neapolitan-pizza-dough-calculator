@@ -23,13 +23,23 @@ https://github.com/thomasloven/lovelace-card-mod<br>
  
  <h2>Installation</h2>
  
- <h3>This repository consists of 3 main files:</h3>
+ <h3>This repository consists of an English and a Swedish version each containing 3 files:</h3>
+ <i> Choose either the EN or SE version. Don't mix them!</i><br>
  
-<b>1. Input Helpers</b><br>
-A list of the input helpers (names** and settings) that needs to be created in your installation in order for you to be able to input data to the calculator.<br><br>
-<b>2. Yaml code</b><br>
+<h3>Swedish versison:</h3>
+<b>1. SE Input Helpers</b><br>
+A list of the input helpers (type, names and settings) that needs to be created in your installation in order for you to be able to input data to the calculator.<br><br>
+<b>2. SE Yaml code</b><br>
 The code needs to go in your configuration.yaml file. This sets up the calculation parameters and creates the necessary sensors.<br><br>
-<b>3. Lovelace UI card yaml code</b><br>
+<b>3. SE Lovelace UI card yaml code</b><br>
+This is the code for the user interface and goes in your lovelace view.<br>
+
+<h3>English versison:</h3>
+<b>1. EN Input Helpers</b><br>
+A list of the input helpers (type, names and settings) that needs to be created in your installation in order for you to be able to input data to the calculator.<br><br>
+<b>2. EN Yaml code</b><br>
+The code needs to go in your configuration.yaml file. This sets up the calculation parameters and creates the necessary sensors.<br><br>
+<b>3. EN Lovelace UI card yaml code</b><br>
 This is the code for the user interface and goes in your lovelace view.<br>
 
  <h2>Some quick notes on how I make a pizza dough:</h2><br>
@@ -55,5 +65,3 @@ For video demonstration and great ideas see this reddit thread: https://www.redd
 
 <b>Additional notes:</b><br>
 <i>*note 1: The yeast is calculated based on fresh yeast. I'm from Sweden and use Kronjäst blå. Other brands or yeast types may give varying results.</i><br>
-
-<i>**note 2: The input helpers, sensors and lovelace UI card yaml code have swedish names and terms. If you change any entity-id of the helpers, please make sure to change the name in the configuration.yaml as well.</i> <br>
