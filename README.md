@@ -2,6 +2,13 @@
 
 ![kalkylator](https://user-images.githubusercontent.com/106514124/214378704-5c25df76-21cf-44c7-9757-b0146867b47e.png)<br>
 
+<h2>Prerequisits:</h2>
+I have used the following HACS addons in order to setup the calculator
+
+https://github.com/custom-cards/button-card<br>
+https://github.com/custom-cards/stack-in-card<br>
+https://github.com/thomasloven/lovelace-card-mod<br>
+
 <h2>This calculator aims to:</h2>
 
 <b>1. Simplify scaling of a dough recipe by automaticly calculate dough weight based on:</b> <br>
