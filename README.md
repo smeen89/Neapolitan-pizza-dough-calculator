@@ -23,11 +23,10 @@ https://github.com/thomasloven/lovelace-card-mod<br>
  
  <h2>This repository consists of 4 main files:</h2>
    
-<b>The 4 main files are:</b><br>
-<b>1.</b> HACS repositories - i.e a list of links to github repositories for Home Assistant that I've used for the setup.<br>
-<b>2.</b> Input Helpers - a list of the input helpers (names** and settings) that needs to be created in order for the calculator to work.<br>
-<b>3.</b> Yaml code - the code needs to go in your configuration.yaml file. This sets up the calculation and the sensors needed.<br>
-<b>4.</b> Lovelace UI card yaml code - this is the code for the user interface and goes in your lovelace view.<br>
+<b>The 3 main files are:</b><br>
+<b>1.</b> Input Helpers - a list of the input helpers (names** and settings) that needs to be created in order for the calculator to work.<br>
+<b>2.</b> Yaml code - the code needs to go in your configuration.yaml file. This sets up the calculation and the sensors needed.<br>
+<b>3.</b> Lovelace UI card yaml code - this is the code for the user interface and goes in your lovelace view.<br>
 
  <h2>Some quick notes on how I make a pizza dough:</h2><br>
  <b>Basic settings to get started that works well with Caputo Pizzeria flour:</b><br><br>
