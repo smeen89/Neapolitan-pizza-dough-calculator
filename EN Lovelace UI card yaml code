@@ -120,7 +120,7 @@ cards:
               action: none
             hold_action:
               action: none
-            entity: input_text.pizzakalkylator_jasmedel
+            entity: input_text.pizzacalculator_leavening_agent
       - square: false
         columns: 2
         type: grid
