@@ -6,99 +6,232 @@ keep:
   border_radius: true
   outer_padding: true
 cards:
-  - type: vertical-stack
-    cards:
-      - type: picture
-        image: local/pizza.png
-        tap_action:
-          action: none
-        hold_action:
-          action: none
-      - type: custom:button-card
-        entity: input_number.pizzakalkylator_antal_pizzor
-        show_name: true
-        show_state: false
-        show_icon: false
-        name: NAPOLITANSK PIZZAKALKYLATOR
-        tap_action:
-          action: none
-        hold_action:
-          action: none
-        styles:
-          name:
-            - font-size: 26px
-            - font-weight: 800
-          card:
-            - height: 40px
-            - padding-bottom: 0px
-      - type: custom:button-card
-        entity: input_number.pizzakalkylator_antal_pizzor
-        show_name: true
-        show_state: false
-        show_icon: false
-        name: INSTÄLLNINGAR
-        tap_action:
-          action: none
-        hold_action:
-          action: none
-        styles:
-          name:
-            - font-size: 16px
-            - font-weight: 600
+- type: vertical-stack
+  cards:
+    - type: picture
+      image: local/pizza.jpg
+      tap_action:
+        action: none
+      hold_action:
+        action: none
+    - type: custom:button-card
+      entity: input_number.pizzakalkylator_antal_pizzor
+      show_name: true
+      show_state: false
+      show_icon: false
+      name: NAPOLITANSK PIZZAKALKYLATOR
+      tap_action:
+        action: none
+      hold_action:
+        action: none
+      styles:
+        name:
+          - font-size: 26px
+          - font-weight: 800
         card:
-          - height: 20px
-      - square: false
-        columns: 2
-        type: grid
-        cards:
-          - type: custom:button-card
-            entity: input_number.pizzakalkylator_antal_pizzor
-            show_name: true
-            show_state: false
-            show_icon: false
-            show_label: false
-            name: Jästemperatur
-            tap_action:
-              action: none
-            hold_action:
-              action: none
-            styles:
-              name:
-                - font-weight: 400
-              label:
-                - font-size: 10px
-                - font-weight: 400
-              card:
-                - height: 20px
-          - type: custom:button-card
-            entity: input_number.pizzakalkylator_antal_pizzor
-            show_name: true
-            show_state: false
-            show_icon: false
-            show_label: false
-            name: Jästid
-            tap_action:
-              action: none
-            hold_action:
-              action: none
-            styles:
-              name:
-                - font-weight: 400
-              label:
-                - font-size: 10px
-                - font-weight: 400
-              card:
-                - height: 20px
-      - square: false
-        columns: 2
-        type: grid
-        cards:
-          - square: false
+          - height: 40px
+          - padding-bottom: 0px
+    - type: custom:button-card
+      entity: input_number.pizzakalkylator_antal_pizzor
+      show_name: true
+      show_state: false
+      show_icon: false
+      name: INSTÄLLNINGAR
+      tap_action:
+        action: none
+      hold_action:
+        action: none
+      styles:
+        name:
+          - font-size: 16px
+          - font-weight: 600
+      card:
+        - height: 20px
+    - square: false
+      columns: 4
+      type: grid
+      cards:
+        - type: custom:button-card
+          show_icon: false
+          show_name: false
+          show_state: false
+          tap_action:
+            action: none
+          hold_action:
+            action: none
+          entity: input_text.pizzakalkylator_jasmedel
+        - type: custom:button-card
+          layout: icon_name
+          show_icon: true
+          show_name: true
+          name: Jäst
+          tap_action:
+            action: call-service
+            service: input_text.set_value
+            service_data:
+              value: Jäst
+              entity_id: input_text.pizzakalkylator_jasmedel
+          entity: input_text.pizzakalkylator_jasmedel
+          hold_action:
+            action: none
+          styles:
+            name:
+              - font-size: 14px
+              - font-weight: 500
+              - justify-self: left
+          icon: |
+            [[[
+                if ( states["input_text.pizzakalkylator_jasmedel"].state == 'Surdeg') return 'mdi:circle-outline';
+                if ( states["input_text.pizzakalkylator_jasmedel"].state == 'Jäst') return 'mdi:check-circle-outline';
+            ]]]
+        - type: custom:button-card
+          layout: icon_name
+          show_icon: true
+          show_name: true
+          name: Surdeg
+          tap_action:
+            action: call-service
+            service: input_text.set_value
+            service_data:
+              value: Surdeg
+              entity_id: input_text.pizzakalkylator_jasmedel
+          entity: input_text.pizzakalkylator_jasmedel
+          hold_action:
+            action: none
+          styles:
+            name:
+              - font-size: 14px
+              - font-weight: 500
+              - justify-self: left
+            card:
+              - height: 30px
+              - margin-bottom: 20px
+          icon: |
+            [[[
+                if ( states["input_text.pizzakalkylator_jasmedel"].state == 'Surdeg') return 'mdi:check-circle-outline';
+                if ( states["input_text.pizzakalkylator_jasmedel"].state == 'Jäst') return 'mdi:circle-outline';
+            ]]]
+        - type: custom:button-card
+          show_icon: false
+          show_name: false
+          show_state: false
+          tap_action:
+            action: none
+          hold_action:
+            action: none
+          entity: input_text.pizzakalkylator_jasmedel
+    - square: false
+      columns: 2
+      type: grid
+      cards:
+        - type: custom:button-card
+          entity: input_number.pizzakalkylator_antal_pizzor
+          show_name: true
+          show_state: false
+          show_icon: false
+          show_label: false
+          name: Jästemperatur
+          tap_action:
+            action: none
+          hold_action:
+            action: none
+          styles:
+            name:
+              - font-weight: 400
+            label:
+              - font-size: 10px
+              - font-weight: 400
+            card:
+              - height: 20px
+        - type: custom:button-card
+          entity: input_number.pizzakalkylator_antal_pizzor
+          show_name: true
+          show_state: false
+          show_icon: false
+          show_label: false
+          name: Jästid
+          tap_action:
+            action: none
+          hold_action:
+            action: none
+          styles:
+            name:
+              - font-weight: 400
+            label:
+              - font-size: 10px
+              - font-weight: 400
+            card:
+              - height: 20px
+    - square: false
+      columns: 2
+      type: grid
+      cards:
+        - square: false
+          columns: 3
+          type: grid
+          cards:
+            - type: custom:button-card
+              entity: input_select.rumstemperatur_rullgardin
+              show_name: false
+              show_state: false
+              show_icon: true
+              icon: mdi:minus
+              size: 25%
+              tap_action:
+                action: call-service
+                service: input_select.select_previous
+                service_data:
+                  entity_id: input_select.rumstemperatur_rullgardin
+              hold_action:
+                action: none
+              styles:
+                card:
+                  - height: 30px
+            - type: custom:button-card
+              entity: input_select.rumstemperatur_rullgardin
+              show_name: false
+              show_state: true
+              show_icon: false
+              tap_action:
+                action: none
+              hold_action:
+                action: none
+              styles:
+                state:
+                  - font-size: 14px
+                  - font-weight: 500
+                card:
+                  - height: 30px
+            - type: custom:button-card
+              entity: input_select.rumstemperatur_rullgardin
+              show_name: false
+              show_state: false
+              show_icon: true
+              icon: mdi:plus
+              size: 25%
+              tap_action:
+                action: call-service
+                service: input_select.select_next
+                service_data:
+                  entity_id: input_select.rumstemperatur_rullgardin
+              hold_action:
+                action: none
+              styles:
+                card:
+                  - height: 30px
+        - type: conditional
+          conditions:
+            - entity: input_select.rumstemperatur_rullgardin
+              state: 19 °C
+            - entity: input_text.pizzakalkylator_jasmedel
+              state: Jäst
+          card:
+            square: false
             columns: 3
             type: grid
             cards:
               - type: custom:button-card
-                entity: input_select.rumstemperatur_rullgardin
+                entity: input_select.pizzakalkylator_jastid_vid_19_grader
                 show_name: false
                 show_state: false
                 show_icon: true
@@ -108,14 +241,18 @@ cards:
                   action: call-service
                   service: input_select.select_previous
                   service_data:
-                    entity_id: input_select.rumstemperatur_rullgardin
+                    entity_id: input_select.pizzakalkylator_jastid_vid_19_grader
                 hold_action:
                   action: none
                 styles:
                   card:
                     - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
               - type: custom:button-card
-                entity: input_select.rumstemperatur_rullgardin
+                entity: input_select.pizzakalkylator_jastid_vid_19_grader
                 show_name: false
                 show_state: true
                 show_icon: false
@@ -129,8 +266,12 @@ cards:
                     - font-weight: 500
                   card:
                     - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
               - type: custom:button-card
-                entity: input_select.rumstemperatur_rullgardin
+                entity: input_select.pizzakalkylator_jastid_vid_19_grader
                 show_name: false
                 show_state: false
                 show_icon: true
@@ -140,704 +281,1112 @@ cards:
                   action: call-service
                   service: input_select.select_next
                   service_data:
-                    entity_id: input_select.rumstemperatur_rullgardin
+                    entity_id: input_select.pizzakalkylator_jastid_vid_19_grader
                 hold_action:
                   action: none
                 styles:
                   card:
                     - height: 30px
-          - type: conditional
-            conditions:
-              - entity: input_select.rumstemperatur_rullgardin
-                state: 19 °C
-            card:
-              square: false
-              columns: 3
-              type: grid
-              cards:
-                - type: custom:button-card
-                  entity: input_select.pizzakalkylator_jastid_vid_19_grader
-                  show_name: false
-                  show_state: false
-                  show_icon: true
-                  icon: mdi:minus
-                  size: 25%
-                  tap_action:
-                    action: call-service
-                    service: input_select.select_previous
-                    service_data:
-                      entity_id: input_select.pizzakalkylator_jastid_vid_19_grader
-                  hold_action:
-                    action: none
-                  styles:
-                    card:
-                      - height: 30px
-                  style: |
-                    ha-card {
-                      box-shadow: none;
-                    }
-                - type: custom:button-card
-                  entity: input_select.pizzakalkylator_jastid_vid_19_grader
-                  show_name: false
-                  show_state: true
-                  show_icon: false
-                  tap_action:
-                    action: none
-                  hold_action:
-                    action: none
-                  styles:
-                    state:
-                      - font-size: 14px
-                      - font-weight: 500
-                    card:
-                      - height: 30px
-                  style: |
-                    ha-card {
-                      box-shadow: none;
-                    }
-                - type: custom:button-card
-                  entity: input_select.pizzakalkylator_jastid_vid_19_grader
-                  show_name: false
-                  show_state: false
-                  show_icon: true
-                  icon: mdi:plus
-                  size: 25%
-                  tap_action:
-                    action: call-service
-                    service: input_select.select_next
-                    service_data:
-                      entity_id: input_select.pizzakalkylator_jastid_vid_19_grader
-                  hold_action:
-                    action: none
-                  styles:
-                    card:
-                      - height: 30px
-                  style: |
-                    ha-card {
-                      box-shadow: none;
-                    }
-          - type: conditional
-            conditions:
-              - entity: input_select.rumstemperatur_rullgardin
-                state: 21 °C
-            card:
-              square: false
-              columns: 3
-              type: grid
-              cards:
-                - type: custom:button-card
-                  entity: input_select.pizzakalkylator_jastid_vid_21_grader
-                  show_name: false
-                  show_state: false
-                  show_icon: true
-                  icon: mdi:minus
-                  size: 25%
-                  tap_action:
-                    action: call-service
-                    service: input_select.select_previous
-                    service_data:
-                      entity_id: input_select.pizzakalkylator_jastid_vid_21_grader
-                  hold_action:
-                    action: none
-                  styles:
-                    card:
-                      - height: 30px
-                  style: |
-                    ha-card {
-                      box-shadow: none;
-                    }
-                - type: custom:button-card
-                  entity: input_select.pizzakalkylator_jastid_vid_21_grader
-                  show_name: false
-                  show_state: true
-                  show_icon: false
-                  tap_action:
-                    action: none
-                  hold_action:
-                    action: none
-                  styles:
-                    state:
-                      - font-size: 14px
-                      - font-weight: 500
-                    card:
-                      - height: 30px
-                  style: |
-                    ha-card {
-                      box-shadow: none;
-                    }
-                - type: custom:button-card
-                  entity: input_select.pizzakalkylator_jastid_vid_21_grader
-                  show_name: false
-                  show_state: false
-                  show_icon: true
-                  icon: mdi:plus
-                  size: 25%
-                  tap_action:
-                    action: call-service
-                    service: input_select.select_next
-                    service_data:
-                      entity_id: input_select.pizzakalkylator_jastid_vid_21_grader
-                  hold_action:
-                    action: none
-                  styles:
-                    card:
-                      - height: 30px
-                  style: |
-                    ha-card {
-                      box-shadow: none;
-                    }
-          - type: conditional
-            conditions:
-              - entity: input_select.rumstemperatur_rullgardin
-                state: 23 °C
-            card:
-              square: false
-              columns: 3
-              type: grid
-              cards:
-                - type: custom:button-card
-                  entity: input_select.pizzakalkylator_jastid_vid_23_grader
-                  show_name: false
-                  show_state: false
-                  show_icon: true
-                  icon: mdi:minus
-                  size: 25%
-                  tap_action:
-                    action: call-service
-                    service: input_select.select_previous
-                    service_data:
-                      entity_id: input_select.pizzakalkylator_jastid_vid_23_grader
-                  hold_action:
-                    action: none
-                  styles:
-                    card:
-                      - height: 30px
-                  style: |
-                    ha-card {
-                      box-shadow: none;
-                    }
-                - type: custom:button-card
-                  entity: input_select.pizzakalkylator_jastid_vid_23_grader
-                  show_name: false
-                  show_state: true
-                  show_icon: false
-                  tap_action:
-                    action: none
-                  hold_action:
-                    action: none
-                  styles:
-                    state:
-                      - font-size: 14px
-                      - font-weight: 500
-                    card:
-                      - height: 30px
-                  style: |
-                    ha-card {
-                      box-shadow: none;
-                    }
-                - type: custom:button-card
-                  entity: input_select.pizzakalkylator_jastid_vid_23_grader
-                  show_name: false
-                  show_state: false
-                  show_icon: true
-                  icon: mdi:plus
-                  size: 25%
-                  tap_action:
-                    action: call-service
-                    service: input_select.select_next
-                    service_data:
-                      entity_id: input_select.pizzakalkylator_jastid_vid_23_grader
-                  hold_action:
-                    action: none
-                  styles:
-                    card:
-                      - height: 30px
-                  style: |
-                    ha-card {
-                      box-shadow: none;
-                    }
-          - type: conditional
-            conditions:
-              - entity: input_select.rumstemperatur_rullgardin
-                state: 25 °C
-            card:
-              square: false
-              columns: 3
-              type: grid
-              cards:
-                - type: custom:button-card
-                  entity: input_select.pizzakalkylator_jastid_vid_25_grader
-                  show_name: false
-                  show_state: false
-                  show_icon: true
-                  icon: mdi:minus
-                  size: 25%
-                  tap_action:
-                    action: call-service
-                    service: input_select.select_previous
-                    service_data:
-                      entity_id: input_select.pizzakalkylator_jastid_vid_25_grader
-                  hold_action:
-                    action: none
-                  styles:
-                    card:
-                      - height: 30px
-                  style: |
-                    ha-card {
-                      box-shadow: none;
-                    }
-                - type: custom:button-card
-                  entity: input_select.pizzakalkylator_jastid_vid_25_grader
-                  show_name: false
-                  show_state: true
-                  show_icon: false
-                  tap_action:
-                    action: none
-                  hold_action:
-                    action: none
-                  styles:
-                    state:
-                      - font-size: 14px
-                      - font-weight: 500
-                    card:
-                      - height: 30px
-                  style: |
-                    ha-card {
-                      box-shadow: none;
-                    }
-                - type: custom:button-card
-                  entity: input_select.pizzakalkylator_jastid_vid_25_grader
-                  show_name: false
-                  show_state: false
-                  show_icon: true
-                  icon: mdi:plus
-                  size: 25%
-                  tap_action:
-                    action: call-service
-                    service: input_select.select_next
-                    service_data:
-                      entity_id: input_select.pizzakalkylator_jastid_vid_25_grader
-                  hold_action:
-                    action: none
-                  styles:
-                    card:
-                      - height: 30px
-                  style: |
-                    ha-card {
-                      box-shadow: none;
-                    }
-          - type: conditional
-            conditions:
-              - entity: input_select.rumstemperatur_rullgardin
-                state: 5 °C
-            card:
-              square: false
-              columns: 3
-              type: grid
-              cards:
-                - type: custom:button-card
-                  entity: input_select.pizzakalkylator_jastid_vid_5_grader
-                  show_name: false
-                  show_state: false
-                  show_icon: true
-                  icon: mdi:minus
-                  size: 25%
-                  tap_action:
-                    action: call-service
-                    service: input_select.select_previous
-                    service_data:
-                      entity_id: input_select.pizzakalkylator_jastid_vid_5_grader
-                  hold_action:
-                    action: none
-                  styles:
-                    card:
-                      - height: 30px
-                  style: |
-                    ha-card {
-                      box-shadow: none;
-                    }
-                - type: custom:button-card
-                  entity: input_select.pizzakalkylator_jastid_vid_5_grader
-                  show_name: false
-                  show_state: true
-                  show_icon: false
-                  tap_action:
-                    action: none
-                  hold_action:
-                    action: none
-                  styles:
-                    state:
-                      - font-size: 14px
-                      - font-weight: 500
-                    card:
-                      - height: 30px
-                  style: |
-                    ha-card {
-                      box-shadow: none;
-                    }
-                - type: custom:button-card
-                  entity: input_select.pizzakalkylator_jastid_vid_5_grader
-                  show_name: false
-                  show_state: false
-                  show_icon: true
-                  icon: mdi:plus
-                  size: 25%
-                  tap_action:
-                    action: call-service
-                    service: input_select.select_next
-                    service_data:
-                      entity_id: input_select.pizzakalkylator_jastid_vid_5_grader
-                  hold_action:
-                    action: none
-                  styles:
-                    card:
-                      - height: 30px
-                  style: |
-                    ha-card {
-                      box-shadow: none;
-                    }
-      - square: false
-        columns: 2
-        type: grid
-        cards:
-          - type: custom:button-card
-            entity: input_number.pizzakalkylator_antal_pizzor
-            show_name: true
-            show_state: false
-            show_icon: false
-            show_label: false
-            name: Antal pizzor
-            tap_action:
-              action: none
-            hold_action:
-              action: none
-            styles:
-              name:
-                - font-weight: 400
-              label:
-                - font-size: 10px
-                - font-weight: 400
-              card:
-                - height: 20px
-                - margin-top: 10px
-          - type: custom:button-card
-            entity: input_number.pizzakalkylator_antal_pizzor
-            show_name: true
-            show_state: false
-            show_icon: false
-            show_label: false
-            name: Vikt per pizza
-            tap_action:
-              action: none
-            hold_action:
-              action: none
-            styles:
-              name:
-                - font-weight: 400
-              label:
-                - font-size: 10px
-                - font-weight: 400
-              card:
-                - height: 20px
-                - margin-top: 10px
-      - square: false
-        columns: 2
-        type: grid
-        cards:
-          - square: false
-            columns: 3
-            type: grid
-            cards:
-              - type: custom:button-card
-                entity: input_number.pizzakalkylator_antal_pizzor
-                show_name: false
-                show_state: false
-                show_icon: true
-                icon: mdi:minus
-                size: 25%
-                tap_action:
-                  action: call-service
-                  service: input_number.decrement
-                  service_data:
-                    entity_id: input_number.pizzakalkylator_antal_pizzor
-                hold_action:
-                  action: none
-                styles:
-                  card:
-                    - height: 30px
-              - type: custom:button-card
-                entity: sensor.pizzakalkylator_antal_pizzor_utan_decimal
-                show_name: false
-                show_state: true
-                show_icon: false
-                tap_action:
-                  action: none
-                hold_action:
-                  action: none
-                styles:
-                  state:
-                    - font-size: 14px
-                    - font-weight: 500
-                  card:
-                    - height: 30px
-              - type: custom:button-card
-                entity: input_number.pizzakalkylator_degvikt
-                show_name: false
-                show_state: false
-                show_icon: true
-                icon: mdi:plus
-                size: 25%
-                tap_action:
-                  action: call-service
-                  service: input_number.increment
-                  service_data:
-                    entity_id: input_number.pizzakalkylator_antal_pizzor
-                hold_action:
-                  action: none
-                styles:
-                  card:
-                    - height: 30px
-          - square: false
-            columns: 3
-            type: grid
-            cards:
-              - type: custom:button-card
-                entity: input_number.pizzakalkylator_degvikt
-                show_name: false
-                show_state: false
-                show_icon: true
-                icon: mdi:minus
-                size: 25%
-                tap_action:
-                  action: call-service
-                  service: input_number.decrement
-                  service_data:
-                    entity_id: input_number.pizzakalkylator_degvikt
-                hold_action:
-                  action: none
-                styles:
-                  card:
-                    - height: 30px
-              - type: custom:button-card
-                entity: sensor.pizzakalkylator_degvikt_utan_decimal
-                show_name: false
-                show_state: true
-                show_icon: false
-                tap_action:
-                  action: none
-                hold_action:
-                  action: none
-                styles:
-                  state:
-                    - font-size: 14px
-                    - font-weight: 500
-                  card:
-                    - height: 30px
-              - type: custom:button-card
-                entity: input_number.pizzakalkylator_degvikt
-                show_name: false
-                show_state: false
-                show_icon: true
-                icon: mdi:plus
-                size: 25%
-                tap_action:
-                  action: call-service
-                  service: input_number.increment
-                  service_data:
-                    entity_id: input_number.pizzakalkylator_degvikt
-                hold_action:
-                  action: none
-                styles:
-                  card:
-                    - height: 30px
-      - square: false
-        columns: 2
-        type: grid
-        cards:
-          - type: custom:button-card
-            entity: input_number.pizzakalkylator_antal_pizzor
-            show_name: true
-            show_state: false
-            show_icon: false
-            show_label: true
-            name: Vatten
-            label: Anges i bageriprocent
-            tap_action:
-              action: none
-            hold_action:
-              action: none
-            styles:
-              name:
-                - font-weight: 400
-              label:
-                - font-size: 10px
-                - font-weight: 400
-                - margin-top: 6px
-              card:
-                - height: 50px
-                - padding-top: 20px
-          - type: custom:button-card
-            entity: input_number.pizzakalkylator_antal_pizzor
-            show_name: true
-            show_state: false
-            show_icon: false
-            show_label: true
-            name: Salt
-            label: Anges i bageriprocent
-            tap_action:
-              action: none
-            hold_action:
-              action: none
-            styles:
-              name:
-                - font-weight: 400
-              label:
-                - font-size: 10px
-                - font-weight: 400
-                - margin-top: 6px
-              card:
-                - height: 50px
-                - padding-top: 20px
-      - square: false
-        columns: 2
-        type: grid
-        cards:
-          - square: false
-            columns: 3
-            type: grid
-            cards:
-              - type: custom:button-card
-                entity: input_number.pizzakalkylator_hydrering
-                show_name: false
-                show_state: false
-                show_icon: true
-                icon: mdi:minus
-                size: 25%
-                tap_action:
-                  action: call-service
-                  service: input_number.decrement
-                  service_data:
-                    entity_id: input_number.pizzakalkylator_hydrering
-                hold_action:
-                  action: none
-                styles:
-                  card:
-                    - height: 30px
-              - type: custom:button-card
-                entity: sensor.pizzakalkylator_hydrering_utan_decimal
-                show_name: false
-                show_state: true
-                show_icon: false
-                tap_action:
-                  action: none
-                hold_action:
-                  action: none
-                styles:
-                  state:
-                    - font-size: 14px
-                    - font-weight: 500
-                  card:
-                    - height: 30px
-              - type: custom:button-card
-                entity: input_number.pizzakalkylator_hydrering
-                show_name: false
-                show_state: false
-                show_icon: true
-                icon: mdi:plus
-                size: 25%
-                tap_action:
-                  action: call-service
-                  service: input_number.increment
-                  service_data:
-                    entity_id: input_number.pizzakalkylator_hydrering
-                hold_action:
-                  action: none
-                styles:
-                  card:
-                    - height: 30px
-          - square: false
-            columns: 3
-            type: grid
-            cards:
-              - type: custom:button-card
-                entity: input_number.pizzakalkylator_salt
-                show_name: false
-                show_state: false
-                show_icon: true
-                icon: mdi:minus
-                size: 25%
-                tap_action:
-                  action: call-service
-                  service: input_number.decrement
-                  service_data:
-                    entity_id: input_number.pizzakalkylator_salt
-                hold_action:
-                  action: none
-                styles:
-                  card:
-                    - height: 30px
-              - type: custom:button-card
-                entity: input_number.pizzakalkylator_salt
-                show_name: false
-                show_state: true
-                show_icon: false
-                tap_action:
-                  action: none
-                hold_action:
-                  action: none
-                styles:
-                  state:
-                    - font-size: 14px
-                    - font-weight: 500
-                  card:
-                    - height: 30px
-              - type: custom:button-card
-                entity: input_number.pizzakalkylator_salt
-                show_name: false
-                show_state: false
-                show_icon: true
-                icon: mdi:plus
-                size: 25%
-                tap_action:
-                  action: call-service
-                  service: input_number.increment
-                  service_data:
-                    entity_id: input_number.pizzakalkylator_salt
-                hold_action:
-                  action: none
-                styles:
-                  card:
-                    - height: 30px
-      - type: custom:button-card
-        entity: input_number.pizzakalkylator_antal_pizzor
-        show_name: true
-        show_state: false
-        show_icon: false
-        show_label: true
-        label: |
-          [[[
-            return Math.round(states['sensor.pizzakalkylator_total_degvikt'].state) + " g";
-          ]]]
-        name: RECEPT
-        tap_action:
-          action: none
-        hold_action:
-          action: none
-        styles:
-          name:
-            - font-size: 16px
-            - font-weight: 600
-            - margin-top: 20px
-          label:
-            - font-size: 14px
-            - font-weight: 500
-            - margin-top: 5px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
+        - type: conditional
+          conditions:
+            - entity: input_select.rumstemperatur_rullgardin
+              state: 21 °C
+            - entity: input_text.pizzakalkylator_jasmedel
+              state: Jäst
           card:
-            - height: 70px
-            - border-top: 1px dashed black
-            - border-radius: 0px
-            - margin-top: 20px
-      - square: false
+            square: false
+            columns: 3
+            type: grid
+            cards:
+              - type: custom:button-card
+                entity: input_select.pizzakalkylator_jastid_vid_21_grader
+                show_name: false
+                show_state: false
+                show_icon: true
+                icon: mdi:minus
+                size: 25%
+                tap_action:
+                  action: call-service
+                  service: input_select.select_previous
+                  service_data:
+                    entity_id: input_select.pizzakalkylator_jastid_vid_21_grader
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
+              - type: custom:button-card
+                entity: input_select.pizzakalkylator_jastid_vid_21_grader
+                show_name: false
+                show_state: true
+                show_icon: false
+                tap_action:
+                  action: none
+                hold_action:
+                  action: none
+                styles:
+                  state:
+                    - font-size: 14px
+                    - font-weight: 500
+                  card:
+                    - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
+              - type: custom:button-card
+                entity: input_select.pizzakalkylator_jastid_vid_21_grader
+                show_name: false
+                show_state: false
+                show_icon: true
+                icon: mdi:plus
+                size: 25%
+                tap_action:
+                  action: call-service
+                  service: input_select.select_next
+                  service_data:
+                    entity_id: input_select.pizzakalkylator_jastid_vid_21_grader
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
+        - type: conditional
+          conditions:
+            - entity: input_select.rumstemperatur_rullgardin
+              state: 23 °C
+            - entity: input_text.pizzakalkylator_jasmedel
+              state: Jäst
+          card:
+            square: false
+            columns: 3
+            type: grid
+            cards:
+              - type: custom:button-card
+                entity: input_select.pizzakalkylator_jastid_vid_23_grader
+                show_name: false
+                show_state: false
+                show_icon: true
+                icon: mdi:minus
+                size: 25%
+                tap_action:
+                  action: call-service
+                  service: input_select.select_previous
+                  service_data:
+                    entity_id: input_select.pizzakalkylator_jastid_vid_23_grader
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
+              - type: custom:button-card
+                entity: input_select.pizzakalkylator_jastid_vid_23_grader
+                show_name: false
+                show_state: true
+                show_icon: false
+                tap_action:
+                  action: none
+                hold_action:
+                  action: none
+                styles:
+                  state:
+                    - font-size: 14px
+                    - font-weight: 500
+                  card:
+                    - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
+              - type: custom:button-card
+                entity: input_select.pizzakalkylator_jastid_vid_23_grader
+                show_name: false
+                show_state: false
+                show_icon: true
+                icon: mdi:plus
+                size: 25%
+                tap_action:
+                  action: call-service
+                  service: input_select.select_next
+                  service_data:
+                    entity_id: input_select.pizzakalkylator_jastid_vid_23_grader
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
+        - type: conditional
+          conditions:
+            - entity: input_select.rumstemperatur_rullgardin
+              state: 25 °C
+            - entity: input_text.pizzakalkylator_jasmedel
+              state: Jäst
+          card:
+            square: false
+            columns: 3
+            type: grid
+            cards:
+              - type: custom:button-card
+                entity: input_select.pizzakalkylator_jastid_vid_25_grader
+                show_name: false
+                show_state: false
+                show_icon: true
+                icon: mdi:minus
+                size: 25%
+                tap_action:
+                  action: call-service
+                  service: input_select.select_previous
+                  service_data:
+                    entity_id: input_select.pizzakalkylator_jastid_vid_25_grader
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
+              - type: custom:button-card
+                entity: input_select.pizzakalkylator_jastid_vid_25_grader
+                show_name: false
+                show_state: true
+                show_icon: false
+                tap_action:
+                  action: none
+                hold_action:
+                  action: none
+                styles:
+                  state:
+                    - font-size: 14px
+                    - font-weight: 500
+                  card:
+                    - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
+              - type: custom:button-card
+                entity: input_select.pizzakalkylator_jastid_vid_25_grader
+                show_name: false
+                show_state: false
+                show_icon: true
+                icon: mdi:plus
+                size: 25%
+                tap_action:
+                  action: call-service
+                  service: input_select.select_next
+                  service_data:
+                    entity_id: input_select.pizzakalkylator_jastid_vid_25_grader
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
+        - type: conditional
+          conditions:
+            - entity: input_select.rumstemperatur_rullgardin
+              state: 5 °C
+            - entity: input_text.pizzakalkylator_jasmedel
+              state: Jäst
+          card:
+            square: false
+            columns: 3
+            type: grid
+            cards:
+              - type: custom:button-card
+                entity: input_select.pizzakalkylator_jastid_vid_5_grader
+                show_name: false
+                show_state: false
+                show_icon: true
+                icon: mdi:minus
+                size: 25%
+                tap_action:
+                  action: call-service
+                  service: input_select.select_previous
+                  service_data:
+                    entity_id: input_select.pizzakalkylator_jastid_vid_5_grader
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
+              - type: custom:button-card
+                entity: input_select.pizzakalkylator_jastid_vid_5_grader
+                show_name: false
+                show_state: true
+                show_icon: false
+                tap_action:
+                  action: none
+                hold_action:
+                  action: none
+                styles:
+                  state:
+                    - font-size: 14px
+                    - font-weight: 500
+                  card:
+                    - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
+              - type: custom:button-card
+                entity: input_select.pizzakalkylator_jastid_vid_5_grader
+                show_name: false
+                show_state: false
+                show_icon: true
+                icon: mdi:plus
+                size: 25%
+                tap_action:
+                  action: call-service
+                  service: input_select.select_next
+                  service_data:
+                    entity_id: input_select.pizzakalkylator_jastid_vid_5_grader
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
+        - type: conditional
+          conditions:
+            - entity: input_select.rumstemperatur_rullgardin
+              state: 19 °C
+            - entity: input_text.pizzakalkylator_jasmedel
+              state: Surdeg
+          card:
+            square: false
+            columns: 3
+            type: grid
+            cards:
+              - type: custom:button-card
+                entity: input_select.pizzakalkylator_jastid_surdeg_vid_19_grader
+                show_name: false
+                show_state: false
+                show_icon: true
+                icon: mdi:minus
+                size: 25%
+                tap_action:
+                  action: call-service
+                  service: input_select.select_previous
+                  service_data:
+                    entity_id: input_select.pizzakalkylator_jastid_surdeg_vid_19_grader
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
+              - type: custom:button-card
+                entity: input_select.pizzakalkylator_jastid_surdeg_vid_19_grader
+                show_name: false
+                show_state: true
+                show_icon: false
+                tap_action:
+                  action: none
+                hold_action:
+                  action: none
+                styles:
+                  state:
+                    - font-size: 14px
+                    - font-weight: 500
+                  card:
+                    - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
+              - type: custom:button-card
+                entity: input_select.pizzakalkylator_jastid_surdeg_vid_19_grader
+                show_name: false
+                show_state: false
+                show_icon: true
+                icon: mdi:plus
+                size: 25%
+                tap_action:
+                  action: call-service
+                  service: input_select.select_next
+                  service_data:
+                    entity_id: input_select.pizzakalkylator_jastid_surdeg_vid_19_grader
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
+        - type: conditional
+          conditions:
+            - entity: input_select.rumstemperatur_rullgardin
+              state: 21 °C
+            - entity: input_text.pizzakalkylator_jasmedel
+              state: Surdeg
+          card:
+            square: false
+            columns: 3
+            type: grid
+            cards:
+              - type: custom:button-card
+                entity: input_select.pizzakalkylator_jastid_surdeg_vid_21_grader
+                show_name: false
+                show_state: false
+                show_icon: true
+                icon: mdi:minus
+                size: 25%
+                tap_action:
+                  action: call-service
+                  service: input_select.select_previous
+                  service_data:
+                    entity_id: input_select.pizzakalkylator_jastid_surdeg_vid_21_grader
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
+              - type: custom:button-card
+                entity: input_select.pizzakalkylator_jastid_surdeg_vid_21_grader
+                show_name: false
+                show_state: true
+                show_icon: false
+                tap_action:
+                  action: none
+                hold_action:
+                  action: none
+                styles:
+                  state:
+                    - font-size: 14px
+                    - font-weight: 500
+                  card:
+                    - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
+              - type: custom:button-card
+                entity: input_select.pizzakalkylator_jastid_surdeg_vid_21_grader
+                show_name: false
+                show_state: false
+                show_icon: true
+                icon: mdi:plus
+                size: 25%
+                tap_action:
+                  action: call-service
+                  service: input_select.select_next
+                  service_data:
+                    entity_id: input_select.pizzakalkylator_jastid_surdeg_vid_21_grader
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
+        - type: conditional
+          conditions:
+            - entity: input_select.rumstemperatur_rullgardin
+              state: 23 °C
+            - entity: input_text.pizzakalkylator_jasmedel
+              state: Surdeg
+          card:
+            square: false
+            columns: 3
+            type: grid
+            cards:
+              - type: custom:button-card
+                entity: input_select.pizzakalkylator_jastid_surdeg_vid_23_grader
+                show_name: false
+                show_state: false
+                show_icon: true
+                icon: mdi:minus
+                size: 25%
+                tap_action:
+                  action: call-service
+                  service: input_select.select_previous
+                  service_data:
+                    entity_id: input_select.pizzakalkylator_jastid_surdeg_vid_23_grader
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
+              - type: custom:button-card
+                entity: input_select.pizzakalkylator_jastid_surdeg_vid_23_grader
+                show_name: false
+                show_state: true
+                show_icon: false
+                tap_action:
+                  action: none
+                hold_action:
+                  action: none
+                styles:
+                  state:
+                    - font-size: 14px
+                    - font-weight: 500
+                  card:
+                    - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
+              - type: custom:button-card
+                entity: input_select.pizzakalkylator_jastid_surdeg_vid_23_grader
+                show_name: false
+                show_state: false
+                show_icon: true
+                icon: mdi:plus
+                size: 25%
+                tap_action:
+                  action: call-service
+                  service: input_select.select_next
+                  service_data:
+                    entity_id: input_select.pizzakalkylator_jastid_surdeg_vid_23_grader
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
+        - type: conditional
+          conditions:
+            - entity: input_select.rumstemperatur_rullgardin
+              state: 25 °C
+            - entity: input_text.pizzakalkylator_jasmedel
+              state: Surdeg
+          card:
+            square: false
+            columns: 3
+            type: grid
+            cards:
+              - type: custom:button-card
+                entity: input_select.pizzakalkylator_jastid_surdeg_vid_25_grader
+                show_name: false
+                show_state: false
+                show_icon: true
+                icon: mdi:minus
+                size: 25%
+                tap_action:
+                  action: call-service
+                  service: input_select.select_previous
+                  service_data:
+                    entity_id: input_select.pizzakalkylator_jastid_surdeg_vid_25_grader
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
+              - type: custom:button-card
+                entity: input_select.pizzakalkylator_jastid_surdeg_vid_25_grader
+                show_name: false
+                show_state: true
+                show_icon: false
+                tap_action:
+                  action: none
+                hold_action:
+                  action: none
+                styles:
+                  state:
+                    - font-size: 14px
+                    - font-weight: 500
+                  card:
+                    - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
+              - type: custom:button-card
+                entity: input_select.pizzakalkylator_jastid_surdeg_vid_25_grader
+                show_name: false
+                show_state: false
+                show_icon: true
+                icon: mdi:plus
+                size: 25%
+                tap_action:
+                  action: call-service
+                  service: input_select.select_next
+                  service_data:
+                    entity_id: input_select.pizzakalkylator_jastid_surdeg_vid_25_grader
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
+        - type: conditional
+          conditions:
+            - entity: input_select.rumstemperatur_rullgardin
+              state: 5 °C
+            - entity: input_text.pizzakalkylator_jasmedel
+              state: Surdeg
+          card:
+            square: false
+            columns: 3
+            type: grid
+            cards:
+              - type: custom:button-card
+                entity: input_select.pizzakalkylator_jastid_surdeg_vid_5_grader
+                show_name: false
+                show_state: false
+                show_icon: true
+                icon: mdi:minus
+                size: 25%
+                tap_action:
+                  action: call-service
+                  service: input_select.select_previous
+                  service_data:
+                    entity_id: input_select.pizzakalkylator_jastid_surdeg_vid_5_grader
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
+              - type: custom:button-card
+                entity: input_select.pizzakalkylator_jastid_surdeg_vid_5_grader
+                show_name: false
+                show_state: true
+                show_icon: false
+                tap_action:
+                  action: none
+                hold_action:
+                  action: none
+                styles:
+                  state:
+                    - font-size: 14px
+                    - font-weight: 500
+                  card:
+                    - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
+              - type: custom:button-card
+                entity: input_select.pizzakalkylator_jastid_surdeg_vid_5_grader
+                show_name: false
+                show_state: false
+                show_icon: true
+                icon: mdi:plus
+                size: 25%
+                tap_action:
+                  action: call-service
+                  service: input_select.select_next
+                  service_data:
+                    entity_id: input_select.pizzakalkylator_jastid_surdeg_vid_5_grader
+                hold_action:
+                  action: none
+                styles:
+                  card:
+                    - height: 30px
+                style: |
+                  ha-card {
+                    box-shadow: none;
+                  }
+    - square: false
+      columns: 2
+      type: grid
+      cards:
+        - type: custom:button-card
+          entity: input_number.pizzakalkylator_antal_pizzor
+          show_name: true
+          show_state: false
+          show_icon: false
+          show_label: false
+          name: Antal pizzor
+          tap_action:
+            action: none
+          hold_action:
+            action: none
+          styles:
+            name:
+              - font-weight: 400
+            label:
+              - font-size: 10px
+              - font-weight: 400
+            card:
+              - height: 20px
+              - margin-top: 10px
+        - type: custom:button-card
+          entity: input_number.pizzakalkylator_antal_pizzor
+          show_name: true
+          show_state: false
+          show_icon: false
+          show_label: false
+          name: Vikt per pizza
+          tap_action:
+            action: none
+          hold_action:
+            action: none
+          styles:
+            name:
+              - font-weight: 400
+            label:
+              - font-size: 10px
+              - font-weight: 400
+            card:
+              - height: 20px
+              - margin-top: 10px
+    - square: false
+      columns: 2
+      type: grid
+      cards:
+        - square: false
+          columns: 3
+          type: grid
+          cards:
+            - type: custom:button-card
+              entity: input_number.pizzakalkylator_antal_pizzor
+              show_name: false
+              show_state: false
+              show_icon: true
+              icon: mdi:minus
+              size: 25%
+              tap_action:
+                action: call-service
+                service: input_number.decrement
+                service_data:
+                  entity_id: input_number.pizzakalkylator_antal_pizzor
+              hold_action:
+                action: none
+              styles:
+                card:
+                  - height: 30px
+            - type: custom:button-card
+              entity: sensor.pizzakalkylator_antal_pizzor_utan_decimal
+              show_name: false
+              show_state: true
+              show_icon: false
+              tap_action:
+                action: none
+              hold_action:
+                action: none
+              styles:
+                state:
+                  - font-size: 14px
+                  - font-weight: 500
+                card:
+                  - height: 30px
+            - type: custom:button-card
+              entity: input_number.pizzakalkylator_degvikt
+              show_name: false
+              show_state: false
+              show_icon: true
+              icon: mdi:plus
+              size: 25%
+              tap_action:
+                action: call-service
+                service: input_number.increment
+                service_data:
+                  entity_id: input_number.pizzakalkylator_antal_pizzor
+              hold_action:
+                action: none
+              styles:
+                card:
+                  - height: 30px
+        - square: false
+          columns: 3
+          type: grid
+          cards:
+            - type: custom:button-card
+              entity: input_number.pizzakalkylator_degvikt
+              show_name: false
+              show_state: false
+              show_icon: true
+              icon: mdi:minus
+              size: 25%
+              tap_action:
+                action: call-service
+                service: input_number.decrement
+                service_data:
+                  entity_id: input_number.pizzakalkylator_degvikt
+              hold_action:
+                action: none
+              styles:
+                card:
+                  - height: 30px
+            - type: custom:button-card
+              entity: sensor.pizzakalkylator_degvikt_utan_decimal
+              show_name: false
+              show_state: true
+              show_icon: false
+              tap_action:
+                action: none
+              hold_action:
+                action: none
+              styles:
+                state:
+                  - font-size: 14px
+                  - font-weight: 500
+                card:
+                  - height: 30px
+            - type: custom:button-card
+              entity: input_number.pizzakalkylator_degvikt
+              show_name: false
+              show_state: false
+              show_icon: true
+              icon: mdi:plus
+              size: 25%
+              tap_action:
+                action: call-service
+                service: input_number.increment
+                service_data:
+                  entity_id: input_number.pizzakalkylator_degvikt
+              hold_action:
+                action: none
+              styles:
+                card:
+                  - height: 30px
+    - square: false
+      columns: 2
+      type: grid
+      cards:
+        - type: custom:button-card
+          entity: input_number.pizzakalkylator_antal_pizzor
+          show_name: true
+          show_state: false
+          show_icon: false
+          show_label: true
+          name: Vatten
+          label: Anges i bageriprocent
+          tap_action:
+            action: none
+          hold_action:
+            action: none
+          styles:
+            name:
+              - font-weight: 400
+            label:
+              - font-size: 10px
+              - font-weight: 400
+              - margin-top: 6px
+            card:
+              - height: 50px
+              - padding-top: 20px
+        - type: custom:button-card
+          entity: input_number.pizzakalkylator_antal_pizzor
+          show_name: true
+          show_state: false
+          show_icon: false
+          show_label: true
+          name: Salt
+          label: Anges i bageriprocent
+          tap_action:
+            action: none
+          hold_action:
+            action: none
+          styles:
+            name:
+              - font-weight: 400
+            label:
+              - font-size: 10px
+              - font-weight: 400
+              - margin-top: 6px
+            card:
+              - height: 50px
+              - padding-top: 20px
+    - square: false
+      columns: 2
+      type: grid
+      cards:
+        - square: false
+          columns: 3
+          type: grid
+          cards:
+            - type: custom:button-card
+              entity: input_number.pizzakalkylator_hydrering
+              show_name: false
+              show_state: false
+              show_icon: true
+              icon: mdi:minus
+              size: 25%
+              tap_action:
+                action: call-service
+                service: input_number.decrement
+                service_data:
+                  entity_id: input_number.pizzakalkylator_hydrering
+              hold_action:
+                action: none
+              styles:
+                card:
+                  - height: 30px
+            - type: custom:button-card
+              entity: sensor.pizzakalkylator_hydrering_utan_decimal
+              show_name: false
+              show_state: true
+              show_icon: false
+              tap_action:
+                action: none
+              hold_action:
+                action: none
+              styles:
+                state:
+                  - font-size: 14px
+                  - font-weight: 500
+                card:
+                  - height: 30px
+            - type: custom:button-card
+              entity: input_number.pizzakalkylator_hydrering
+              show_name: false
+              show_state: false
+              show_icon: true
+              icon: mdi:plus
+              size: 25%
+              tap_action:
+                action: call-service
+                service: input_number.increment
+                service_data:
+                  entity_id: input_number.pizzakalkylator_hydrering
+              hold_action:
+                action: none
+              styles:
+                card:
+                  - height: 30px
+        - square: false
+          columns: 3
+          type: grid
+          cards:
+            - type: custom:button-card
+              entity: input_number.pizzakalkylator_salt
+              show_name: false
+              show_state: false
+              show_icon: true
+              icon: mdi:minus
+              size: 25%
+              tap_action:
+                action: call-service
+                service: input_number.decrement
+                service_data:
+                  entity_id: input_number.pizzakalkylator_salt
+              hold_action:
+                action: none
+              styles:
+                card:
+                  - height: 30px
+            - type: custom:button-card
+              entity: input_number.pizzakalkylator_salt
+              show_name: false
+              show_state: true
+              show_icon: false
+              tap_action:
+                action: none
+              hold_action:
+                action: none
+              styles:
+                state:
+                  - font-size: 14px
+                  - font-weight: 500
+                card:
+                  - height: 30px
+            - type: custom:button-card
+              entity: input_number.pizzakalkylator_salt
+              show_name: false
+              show_state: false
+              show_icon: true
+              icon: mdi:plus
+              size: 25%
+              tap_action:
+                action: call-service
+                service: input_number.increment
+                service_data:
+                  entity_id: input_number.pizzakalkylator_salt
+              hold_action:
+                action: none
+              styles:
+                card:
+                  - height: 30px
+    - type: custom:button-card
+      entity: input_number.pizzakalkylator_antal_pizzor
+      show_name: true
+      show_state: false
+      show_icon: false
+      show_label: true
+      label: |
+        [[[
+          return Math.round(states['sensor.pizzakalkylator_total_degvikt'].state) + " g";
+        ]]]
+      name: RECEPT
+      tap_action:
+        action: none
+      hold_action:
+        action: none
+      styles:
+        name:
+          - font-size: 16px
+          - font-weight: 600
+          - margin-top: 20px
+        label:
+          - font-size: 14px
+          - font-weight: 500
+          - margin-top: 5px
+        card:
+          - height: 70px
+          - border-top: 1px dashed black
+          - border-radius: 0px
+          - margin-top: 20px
+    - type: conditional
+      conditions:
+        - entity: input_text.pizzakalkylator_jasmedel
+          state: Surdeg
+      card:
+        square: false
+        columns: 4
+        type: grid
+        cards:
+          - type: custom:button-card
+            entity: sensor.pizzakalkylator_mjol_vikt_surdeg
+            show_name: true
+            name: Mjöl
+            show_state: true
+            show_icon: false
+            tap_action:
+              action: none
+            hold_action:
+              action: none
+            styles:
+              name:
+                - font-weight: 400
+              state:
+                - margin-top: 10px
+                - font-size: 14px
+                - font-weight: 500
+              card:
+                - margin-top: '-10px'
+            style: |
+              ha-card {
+                box-shadow: none;
+              }
+          - type: custom:button-card
+            entity: sensor.pizzakalkylator_hydrering_vikt_surdeg
+            show_name: true
+            name: Vatten
+            show_state: true
+            show_icon: false
+            tap_action:
+              action: none
+            hold_action:
+              action: none
+            styles:
+              name:
+                - font-weight: 400
+              state:
+                - margin-top: 10px
+                - font-size: 14px
+                - font-weight: 500
+              card:
+                - margin-top: '-10px'
+            style: |
+              ha-card {
+                box-shadow: none;
+              }
+          - type: custom:button-card
+            entity: sensor.pizzakalkylator_salt_vikt_surdeg
+            show_name: true
+            name: Salt
+            show_state: true
+            show_icon: false
+            tap_action:
+              action: none
+            hold_action:
+              action: none
+            styles:
+              name:
+                - font-weight: 400
+              state:
+                - margin-top: 10px
+                - font-size: 14px
+                - font-weight: 500
+              card:
+                - margin-top: '-10px'
+            style: |
+              ha-card {
+                box-shadow: none;
+              }
+          - type: custom:button-card
+            entity: sensor.pizzakalkylator_surdeg_vikt
+            show_name: true
+            name: Surdeg
+            show_state: true
+            show_icon: false
+            tap_action:
+              action: none
+            hold_action:
+              action: none
+            styles:
+              name:
+                - font-weight: 400
+              state:
+                - margin-top: 10px
+                - font-size: 14px
+                - font-weight: 500
+              card:
+                - margin-top: '-10px'
+            style: |
+              ha-card {
+                box-shadow: none;
+              }
+    - type: conditional
+      conditions:
+        - entity: input_text.pizzakalkylator_jasmedel
+          state: Jäst
+      card:
+        square: false
         columns: 4
         type: grid
         cards:
@@ -860,6 +1409,10 @@ cards:
                 - font-weight: 500
               card:
                 - margin-top: '-10px'
+            style: |
+              ha-card {
+                box-shadow: none;
+              }
           - type: custom:button-card
             entity: sensor.pizzakalkylator_hydrering_vikt
             show_name: true
@@ -879,6 +1432,10 @@ cards:
                 - font-weight: 500
               card:
                 - margin-top: '-10px'
+            style: |
+              ha-card {
+                box-shadow: none;
+              }
           - type: custom:button-card
             entity: sensor.pizzakalkylator_salt_vikt
             show_name: true
@@ -898,6 +1455,10 @@ cards:
                 - font-weight: 500
               card:
                 - margin-top: '-10px'
+            style: |
+              ha-card {
+                box-shadow: none;
+              }
           - type: custom:button-card
             entity: sensor.pizzakalkylator_jast_vikt
             show_name: true
@@ -917,26 +1478,35 @@ cards:
                 - font-weight: 500
               card:
                 - margin-top: '-10px'
-      - type: custom:button-card
-        entity: input_number.pizzakalkylator_antal_pizzor
-        show_name: true
-        show_state: false
-        show_icon: false
-        name: PROCENTSATSER
-        tap_action:
-          action: none
-        hold_action:
-          action: none
-        styles:
-          name:
-            - font-size: 16px
-            - font-weight: 600
-          card:
-            - height: 60px
-            - border-top: 1px dashed black
-            - border-radius: 0px
-            - margin-top: 20px
-      - square: false
+            style: |
+              ha-card {
+                box-shadow: none;
+              }
+    - type: custom:button-card
+      entity: input_number.pizzakalkylator_antal_pizzor
+      show_name: true
+      show_state: false
+      show_icon: false
+      name: PROCENTSATSER
+      tap_action:
+        action: none
+      hold_action:
+        action: none
+      styles:
+        name:
+          - font-size: 16px
+          - font-weight: 600
+        card:
+          - height: 60px
+          - border-top: 1px dashed black
+          - border-radius: 0px
+          - margin-top: 20px
+    - type: conditional
+      conditions:
+        - entity: input_text.pizzakalkylator_jasmedel
+          state: Jäst
+      card:
+        square: false
         columns: 4
         type: grid
         cards:
@@ -961,6 +1531,10 @@ cards:
                 - height: 50px
                 - margin-top: '-20px'
                 - margin-bottom: 20px
+            style: |
+              ha-card {
+                box-shadow: none;
+              }
           - type: custom:button-card
             entity: sensor.pizzakalkylator_hydrering_procent_avrundat
             show_name: true
@@ -982,6 +1556,10 @@ cards:
                 - height: 50px
                 - margin-top: '-20px'
                 - margin-bottom: 20px
+            style: |
+              ha-card {
+                box-shadow: none;
+              }
           - type: custom:button-card
             entity: sensor.pizzakalkylator_salt_procent_avrundat
             show_name: true
@@ -1003,6 +1581,10 @@ cards:
                 - height: 50px
                 - margin-top: '-20px'
                 - margin-bottom: 20px
+            style: |
+              ha-card {
+                box-shadow: none;
+              }
           - type: custom:button-card
             entity: sensor.pizzakalkylator_jast_procent_avrundat
             show_name: true
@@ -1024,3 +1606,116 @@ cards:
                 - height: 50px
                 - margin-top: '-20px'
                 - margin-bottom: 20px
+            style: |
+              ha-card {
+                box-shadow: none;
+              }
+    - type: conditional
+      conditions:
+        - entity: input_text.pizzakalkylator_jasmedel
+          state: Surdeg
+      card:
+        square: false
+        columns: 4
+        type: grid
+        cards:
+          - type: custom:button-card
+            entity: sensor.pizzakalkylator_mjol_procent_avrundat_surdeg
+            show_name: true
+            name: Mjöl
+            show_state: true
+            show_icon: false
+            tap_action:
+              action: none
+            hold_action:
+              action: none
+            styles:
+              name:
+                - font-weight: 400
+              state:
+                - margin-top: 10px
+                - font-size: 14px
+                - font-weight: 500
+              card:
+                - height: 50px
+                - margin-top: '-20px'
+                - margin-bottom: 20px
+            style: |
+              ha-card {
+                box-shadow: none;
+              }
+          - type: custom:button-card
+            entity: sensor.pizzakalkylator_hydrering_procent_avrundat_surdeg
+            show_name: true
+            name: Vatten
+            show_state: true
+            show_icon: false
+            tap_action:
+              action: none
+            hold_action:
+              action: none
+            styles:
+              name:
+                - font-weight: 400
+              state:
+                - margin-top: 10px
+                - font-size: 14px
+                - font-weight: 500
+              card:
+                - height: 50px
+                - margin-top: '-20px'
+                - margin-bottom: 20px
+            style: |
+              ha-card {
+                box-shadow: none;
+              }
+          - type: custom:button-card
+            entity: sensor.pizzakalkylator_salt_procent_avrundat_surdeg
+            show_name: true
+            name: Salt
+            show_state: true
+            show_icon: false
+            tap_action:
+              action: none
+            hold_action:
+              action: none
+            styles:
+              name:
+                - font-weight: 400
+              state:
+                - margin-top: 10px
+                - font-size: 14px
+                - font-weight: 500
+              card:
+                - height: 50px
+                - margin-top: '-20px'
+                - margin-bottom: 20px
+            style: |
+              ha-card {
+                box-shadow: none;
+              }
+          - type: custom:button-card
+            entity: sensor.pizzakalkylator_surdeg_procent_avrundat
+            show_name: true
+            name: Surdeg
+            show_state: true
+            show_icon: false
+            tap_action:
+              action: none
+            hold_action:
+              action: none
+            styles:
+              name:
+                - font-weight: 400
+              state:
+                - margin-top: 10px
+                - font-size: 14px
+                - font-weight: 500
+              card:
+                - height: 50px
+                - margin-top: '-20px'
+                - margin-bottom: 20px
+            style: |
+              ha-card {
+                box-shadow: none;
+              }
