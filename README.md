@@ -26,7 +26,7 @@ https://github.com/thomasloven/lovelace-card-mod<br>
    <b>a)</b> surrounding temperature of the dough throughout the fermentation i.e room temperature or fridge temperature<br>
    <b>b)</b> time until baking out the pizzas.<br>
    
- <b>3. Make it easy for the user to change water and salt levels to encourage experimentation.</b>
+ <b>4. Make it easy for the user to change water and salt levels to encourage experimentation.</b>
  
  <h2>Installation</h2>
  
