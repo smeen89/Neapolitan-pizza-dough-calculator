@@ -37,6 +37,12 @@ maximalt värde: 4
 steglängd: 0,1
 måttenhet: valfritt
 
+type: input_text
+name: pizzakalkylator_jasmedel
+minsta värde: 0
+maximalt värde: 100
+visningsläge: text
+
 typ: rullgardinsmeny
 namn: rumstemperatur_rullgardin 
 alternativ:
@@ -100,3 +106,63 @@ alternativ:
 12 h
 16 h
 18 h
+
+typ: rullgardinsmeny
+namn: pizzakalkylator_jastid_surdeg_vid_5_grader
+alternativ:
+125 h
+171 h
+204 h
+225 h
+283 h
+355 h
+434 h
+513 h
+
+typ: rullgardinsmeny
+namn: pizzakalkylator_jastid_surdeg_vid_19_grader
+alternativ:
+11 h
+15 h
+18 h
+22 h
+29 h
+34 h
+38 h
+45 h
+
+typ: rullgardinsmeny
+namn: pizzakalkylator_jastid_surdeg_vid_21_grader
+alternativ:
+8 h
+11 h
+13 h
+16 h
+21 h
+24 h
+28 h
+33 h
+
+typ: rullgardinsmeny
+namn: pizzakalkylator_jastid_surdeg_vid_23_grader
+alternativ:
+7 h
+9 h
+11 h
+13 h
+17 h
+20 h
+23 h
+27 h
+
+typ: rullgardinsmeny
+namn: pizzakalkylator_jastid_surdeg_vid_25grader
+alternativ:
+5 h
+7 h
+9 h
+11 h
+14 h
+17 h
+19 h
+22 h
