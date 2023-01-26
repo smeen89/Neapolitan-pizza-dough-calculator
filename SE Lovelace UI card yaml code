@@ -9,7 +9,7 @@ cards:
 - type: vertical-stack
   cards:
     - type: picture
-      image: local/pizza.jpg
+      image: local/pizza.png
       tap_action:
         action: none
       hold_action:
