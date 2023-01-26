@@ -1,59 +1,85 @@
 sensor:
+   # PIZZACALCULATOR SETTINGS FOR YEAST
   - platform: template
     sensors:
+      # Sums up all percentages
       pizzacalculator_total_percent:
         unit_of_measurement: percent
         value_template: "{{ states('input_number.pizzacalculator_flour') | float(0) + states('input_number.pizzacalculator_water') | float(0) + states('input_number.pizzacalculator_salt') | float(0) + states('sensor.pizzacalculator_calculated_yeast') | float(0) }}"
+      # Sums up number of pizzas and the weight per pizza
       pizzacalculator_total_doughweight:
         unit_of_measurement: gram
         value_template: "{{ states('input_number.pizzacalculator_doughweight') | float(0) * states('input_number.pizzacalculator_number_of_pizza') | float(0) | round(0) }}"
+      # Calculates percentage of water by dividing water bakers percent by total dough percent
       pizzacalculator_water_percent:
-        unit_of_measurement: bakerspercent
+        unit_of_measurement: '%'
         value_template: "{{ states('input_number.pizzacalculator_water') | float(0) / states('sensor.pizzacalculator_total_percent') | float(0) | round(1) }}"
+      # Calculates percentage of yeast by dividing yeast bakers percent by total dough percent
       pizzacalculator_yeast_percent:
-        unit_of_measurement: bakerspercent
+        unit_of_measurement: '%'
         value_template: "{{ states('sensor.pizzacalculator_calculated_yeast') | float(0) / states('sensor.pizzacalculator_total_percent') | float(0) | round(1) }}"
+      # Calculates percentage of salt by dividing salt bakers percent by total dough percent
       pizzacalculator_salt_percent:
-        unit_of_measurement: bakerspercent
+        unit_of_measurement: '%'
         value_template: "{{ states('input_number.pizzacalculator_salt') | float(0) / states('sensor.pizzacalculator_total_percent') | float(0) | round(1) }}"
+      # Calculates percentage of flour by dividing flour bakers percent by total dough percent
       pizzacalculator_flour_percent:
         value_template: "{{ states('input_number.pizzacalculator_flour') | float(0) / states('sensor.pizzacalculator_total_percent') | float(0) | round(1) }}"
+      # Calculates weight of water by multiplying water percent by total dough weight
       pizzacalculator_water_weight:
         unit_of_measurement: g
         value_template: "{{ ((states.sensor.pizzacalculator_water_percent.state | float) * (states.sensor.pizzacalculator_total_doughweight.state | float)) | round(0) }}"
+      # Calculates weight of yeast by multiplying yeast percent by total dough weight
       pizzacalculator_yeast_weight:
         unit_of_measurement: g
         value_template: "{{ ((states.sensor.pizzacalculator_yeast_percent.state | float) * (states.sensor.pizzacalculator_total_doughweight.state | float)) | round(2) }}"
+      # Calculates weight of salt by multiplying salt percent by total dough weight
       pizzacalculator_salt_weight:
         unit_of_measurement: g
         value_template: "{{ ((states.sensor.pizzacalculator_salt_percent.state | float) * (states.sensor.pizzacalculator_total_doughweight.state | float)) | round(1) }}"
+      # Calculates weight of flour by multiplying flour percent by total dough weight        
       pizzacalculator_flour_weight:
         unit_of_measurement: g
         value_template: "{{ ((states.sensor.pizzacalculator_flour_percent.state | float) * (states.sensor.pizzacalculator_total_doughweight.state | float)) | round(0) }}"
+      # Removes the decimal of numbers of pizzas      
       pizzacalculator_number_of_pizza_without_decimal:
         value_template: "{{ states('input_number.pizzacalculator_number_of_pizza')|int}}"
         unit_of_measurement: pcs
+      # Removes the decimal of doughweight
       pizzacalculator_doughweight_without_decimal:
         value_template: "{{ states('input_number.pizzacalculator_doughweight')|int}}"
         unit_of_measurement: g
+      # Removes the decimal of water
       pizzacalculator_water_without_decimal:
         value_template: "{{ states('input_number.pizzacalculator_water')|int}}"
         unit_of_measurement: '%'
+      # Rounds up flour percent
       pizzacalculator_flour_percent_rounded:
         value_template: "{{ ((states('sensor.pizzacalculator_flour_weight')|float) * 100 / (states('sensor.pizzacalculator_total_doughweight')|float))|round(2) }}"
         unit_of_measurement: '%'
+      # Rounds up water percent
       pizzacalculator_water_percent_rounded:
         value_template: "{{ ((states('sensor.pizzacalculator_water_weight')|float) * 100 / (states('sensor.pizzacalculator_total_doughweight')|float))|round(2) }}"
         unit_of_measurement: '%'
+      # Rounds up salt percent
       pizzacalculator_salt_percent_rounded:
         value_template: "{{ ((states('sensor.pizzacalculator_salt_weight')|float) * 100 / (states('sensor.pizzacalculator_total_doughweight')|float))|round(2) }}"
         unit_of_measurement: '%'
+      # Rounds up yeast percent
       pizzacalculator_yeast_percent_rounded:
         value_template: "{{ ((states('sensor.pizzacalculator_yeast_weight')|float) * 100 / (states('sensor.pizzacalculator_total_doughweight')|float))|round(3) }}"
-        unit_of_measurement: '%'         
+        unit_of_measurement: '%' 
+        
+      # Calculating required amount of yeast
       pizzacalculator_calculated_yeast:          
         value_template: >-
-           {%- if is_state('input_select.roomtemperature', '19 °C')
+           {%- if is_state('input_select.roomtemperature', '5 °C')
+           and is_state('input_select.pizzacalculator_prooftime_at_5_degrees', '130 h') -%} 0.175
+           {%- elif is_state('input_select.roomtemperature', '5 °C')
+           and is_state('input_select.pizzacalculator_prooftime_at_5_degrees', '145 h') -%} 0.15
+           {%- elif is_state('input_select.roomtemperature', '5 °C')
+           and is_state('input_select.pizzacalculator_prooftime_at_5_degrees', '166 h') -%} 0.125
+           {%- elif is_state('input_select.roomtemperature', '19 °C')
            and is_state('input_select.pizzacalculator_prooftime_at_19_degrees', '12 h') -%} 0.175
            {%- elif is_state('input_select.roomtemperature', '19 °C')
            and is_state('input_select.pizzacalculator_prooftime_at_19_degrees', '13.5 h') -%} 0.15
@@ -117,12 +143,133 @@ sensor:
            and is_state('input_select.pizzacalculator_prooftime_at_25_degrees', '16 h') -%} 0.025
            {%- elif is_state('input_select.roomtemperature', '25 °C')
            and is_state('input_select.pizzacalculator_prooftime_at_25_degrees', '18 h') -%} 0.015
-           {%- elif is_state('input_select.roomtemperature', '5 °C')
-           and is_state('input_select.pizzacalculator_prooftime_at_5_degrees', '130 h') -%} 0.175
-           {%- elif is_state('input_select.roomtemperature', '5 °C')
-           and is_state('input_select.pizzacalculator_prooftime_at_5_degrees', '145 h') -%} 0.15
-           {%- elif is_state('input_select.roomtemperature', '5 °C')
-           and is_state('input_select.pizzacalculator_prooftime_at_5_degrees', '166 h') -%} 0.125
            {%- else -%} **data missing**
            {%- endif %}
         unit_of_measurement: '%'
+        
+      # PIZZACALCULATOR SETTINGS FOR SOURDOUGH
+      pizzacalculator_total_percent_sourdough:
+        unit_of_measurement: '%'
+        value_template: "{{ states('input_number.pizzacalculator_flour') | float(0) + states('input_number.pizzacalculator_water') | float(0) + states('input_number.pizzacalculator_salt') | float(0) + states('sensor.pizzacalculator_calculated_sourdough') | float(0) }}"
+      pizzacalculator_sourdough_percent:
+        unit_of_measurement: '%'
+        value_template: "{{ states('sensor.pizzacalculator_calculated_sourdough') | float(0) / states('sensor.pizzacalculator_total_percent_sourdough') | float(0) | round(1) }}"
+      pizzacalculator_water_percent_sourdough:
+        unit_of_measurement: '%'
+        value_template: "{{ states('input_number.pizzacalculator_water') | float(0) / states('sensor.pizzacalculator_total_percent_sourdough') | float(0) | round(1) }}"
+      pizzacalculator_salt_percent_sourdough:
+        unit_of_measurement: '%'
+        value_template: "{{ states('input_number.pizzacalculator_salt') | float(0) / states('sensor.pizzacalculator_total_percent_sourdough') | float(0) | round(1) }}"
+      pizzacalculator_flour_percent_sourdough:
+        value_template: "{{ states('input_number.pizzacalculator_flour') | float(0) / states('sensor.pizzacalculator_total_percent_sourdough') | float(0) | round(1) }}"
+      pizzacalculator_water_weight_sourdough:
+        unit_of_measurement: g
+        value_template: "{{ ((states.sensor.pizzacalculator_water_percent_sourdough.state | float) * (states.sensor.pizzacalculator_total_doughweight.state | float)) | round(0) }}"
+      pizzacalculator_sourdough_weight:
+        unit_of_measurement: g
+        value_template: "{{ ((states.sensor.pizzacalculator_sourdough_percent.state | float) * (states.sensor.pizzacalculator_total_doughweight.state | float)) | round(1) }}"
+      pizzacalculator_salt_weight_sourdough:
+        unit_of_measurement: g
+        value_template: "{{ ((states.sensor.pizzacalculator_salt_percent_sourdough.state | float) * (states.sensor.pizzacalculator_total_doughweight.state | float)) | round(1) }}"
+      pizzacalculator_flour_weight_sourdough:
+        unit_of_measurement: g
+        value_template: "{{ ((states.sensor.pizzacalculator_flour_percent_sourdough.state | float) * (states.sensor.pizzacalculator_total_doughweight.state | float)) | round(0) }}"        
+      pizzacalculator_flour_percent_rounded_sourdough:
+        value_template: "{{ ((states('sensor.pizzacalculator_flour_weight_sourdough')|float) * 100 / (states('sensor.pizzacalculator_total_doughweight')|float))|round(2) }}"
+        unit_of_measurement: '%'
+      pizzacalculator_water_percent_rounded_sourdough:
+        value_template: "{{ ((states('sensor.pizzacalculator_water_weight_sourdough')|float) * 100 / (states('sensor.pizzacalculator_total_doughweight')|float))|round(2) }}"
+        unit_of_measurement: '%'
+      pizzacalculator_salt_percent_rounded_sourdough:
+        value_template: "{{ ((states('sensor.pizzacalculator_salt_weight_sourdough')|float) * 100 / (states('sensor.pizzacalculator_total_doughweight')|float))|round(2) }}"
+        unit_of_measurement: '%'
+      pizzacalculator_sourdough_percent_rounded:
+        value_template: "{{ ((states('sensor.pizzacalculator_sourdough_weight')|float) * 100 / (states('sensor.pizzacalculator_total_doughweight')|float))|round(2) }}"
+        unit_of_measurement: '%'
+        
+      # Calculating required amount of sourdough      
+      pizzacalculator_calculated_sourdough:          
+        value_template: >-
+           {%- if is_state('input_select.roomtemperature', '19 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_19_degrees', '11 h') -%} 30
+           {%- elif is_state('input_select.roomtemperature', '19 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_19_degrees', '15 h') -%} 20
+           {%- elif is_state('input_select.roomtemperature', '19 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_19_degrees', '18 h') -%} 15
+           {%- elif is_state('input_select.roomtemperature', '19 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_19_degrees', '22 h') -%} 10
+           {%- elif is_state('input_select.roomtemperature', '19 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_19_degrees', '29 h') -%} 5
+           {%- elif is_state('input_select.roomtemperature', '19 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_19_degrees', '34 h') -%} 3
+           {%- elif is_state('input_select.roomtemperature', '19 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_19_degrees', '38 h') -%} 2
+           {%- elif is_state('input_select.roomtemperature', '19 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_19_degrees', '45 h') -%} 1
+           {%- elif is_state('input_select.roomtemperature', '21 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_21_degrees', '8 h') -%} 30
+           {%- elif is_state('input_select.roomtemperature', '21 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_21_degrees', '11 h') -%} 20
+           {%- elif is_state('input_select.roomtemperature', '21 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_21_degrees', '13 h') -%} 15
+           {%- elif is_state('input_select.roomtemperature', '21 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_21_degrees', '16 h') -%} 10
+           {%- elif is_state('input_select.roomtemperature', '21 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_21_degrees', '21 h') -%} 5
+           {%- elif is_state('input_select.roomtemperature', '21 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_21_degrees', '24 h') -%} 3
+           {%- elif is_state('input_select.roomtemperature', '21 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_21_degrees', '28 h') -%} 2
+           {%- elif is_state('input_select.roomtemperature', '21 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_21_degrees', '33 h') -%} 1
+           {%- elif is_state('input_select.roomtemperature', '23 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_23_degrees', '7 h') -%} 30
+           {%- elif is_state('input_select.roomtemperature', '23 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_23_degrees', '9 h') -%} 20
+           {%- elif is_state('input_select.roomtemperature', '23 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_23_degrees', '11 h') -%} 15
+           {%- elif is_state('input_select.roomtemperature', '23 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_23_degrees', '13 h') -%} 10
+           {%- elif is_state('input_select.roomtemperature', '23 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_23_degrees', '17 h') -%} 5
+           {%- elif is_state('input_select.roomtemperature', '23 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_23_degrees', '20 h') -%} 3
+           {%- elif is_state('input_select.roomtemperature', '23 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_23_degrees', '23 h') -%} 2
+           {%- elif is_state('input_select.roomtemperature', '23 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_23_degrees', '27 h') -%} 1
+           {%- elif is_state('input_select.roomtemperature', '25 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_25_degrees', '5 h') -%} 30
+           {%- elif is_state('input_select.roomtemperature', '25 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_25_degrees', '7 h') -%} 20
+           {%- elif is_state('input_select.roomtemperature', '25 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_25_degrees', '9 h') -%} 15
+           {%- elif is_state('input_select.roomtemperature', '25 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_25_degrees', '11 h') -%} 10
+           {%- elif is_state('input_select.roomtemperature', '25 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_25_degrees', '14 h') -%} 5
+           {%- elif is_state('input_select.roomtemperature', '25 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_25_degrees', '17 h') -%} 3
+           {%- elif is_state('input_select.roomtemperature', '25 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_25_degrees', '19 h') -%} 2
+           {%- elif is_state('input_select.roomtemperature', '25 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_25_degrees', '22 h') -%} 1
+           {%- elif is_state('input_select.roomtemperature', '5 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_5_degrees', '125 h') -%} 30
+           {%- elif is_state('input_select.roomtemperature', '5 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_5_degrees', '171 h') -%} 20
+           {%- elif is_state('input_select.roomtemperature', '5 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_5_degrees', '204 h') -%} 15
+           {%- elif is_state('input_select.roomtemperature', '5 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_5_degrees', '225 h') -%} 10
+           {%- elif is_state('input_select.roomtemperature', '5 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_5_degrees', '283 h') -%} 5
+           {%- elif is_state('input_select.roomtemperature', '5 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_5_degrees', '355 h') -%} 3
+           {%- elif is_state('input_select.roomtemperature', '5 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_5_degrees', '434 h') -%} 2
+           {%- elif is_state('input_select.roomtemperature', '5 °C')
+           and is_state('input_select.pizzacalculator_prooftime_sourdough_at_5_degrees', '513 h') -%} 1
+           {%- else -%} **data missing**
+           {%- endif %}
+        unit_of_measurement: '%' 
