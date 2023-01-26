@@ -1,6 +1,7 @@
 <h1>Neapolitan pizza dough calculator for Home Assistant</h1><br>
 
-![EN](https://user-images.githubusercontent.com/106514124/214542674-2d3f13ad-4e65-410f-80d9-a438a34f41f9.png)    ![SE](https://user-images.githubusercontent.com/106514124/214527268-2072c149-29e9-4e71-b3eb-2d4985c2870b.PNG)
+![surdeg](https://user-images.githubusercontent.com/106514124/214793317-38050f2f-6f5e-45ca-8646-2760cafaed33.png)
+
 
 <h2>Prerequisits</h2>
 I have used the following HACS addons in order to setup the calculator
@@ -21,7 +22,11 @@ https://github.com/thomasloven/lovelace-card-mod<br>
    <b>a)</b> surrounding temperature of the dough throughout the fermentation i.e room temperature or fridge temperature<br>
    <b>b)</b> time until baking out the pizzas.<br>
    
- <b>3. Make it easy for the user to change hydration and salt levels to encourage experimentation.</b>
+ <b>3. Calculate required amount of active sourdough based on:</b><br>
+   <b>a)</b> surrounding temperature of the dough throughout the fermentation i.e room temperature or fridge temperature<br>
+   <b>b)</b> time until baking out the pizzas.<br>
+   
+ <b>3. Make it easy for the user to change water and salt levels to encourage experimentation.</b>
  
  <h2>Installation</h2>
  
