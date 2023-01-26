@@ -1,56 +1,76 @@
 sensor:
+  # PIZZAKALKYLATOR INSTÄLLNINGAR FÖR JÄST
   - platform: template
     sensors:
+      # Summerar alla procent
       pizzakalkylator_total_procent:
-        unit_of_measurement: procent
+        unit_of_measurement: '%'
         value_template: "{{ states('input_number.pizzakalkylator_mjol') | float(0) + states('input_number.pizzakalkylator_hydrering') | float(0) + states('input_number.pizzakalkylator_salt') | float(0) + states('sensor.pizzakalkylator_kalkylerad_jast') | float(0) }}"
+      # Summerar antalet pizzor med vikten per pizza     
       pizzakalkylator_total_degvikt:
-        unit_of_measurement: gram
+        unit_of_measurement: g
         value_template: "{{ states('input_number.pizzakalkylator_degvikt') | float(0) * states('input_number.pizzakalkylator_antal_pizzor') | float(0) | round(0) }}"
+      # Räknar ut procent av vatten genom att dela vatten i bageriprocent med den totala procenten     
       pizzakalkylator_hydrering_procent:
-        unit_of_measurement: bageriprocent
+        unit_of_measurement: '%'
         value_template: "{{ states('input_number.pizzakalkylator_hydrering') | float(0) / states('sensor.pizzakalkylator_total_procent') | float(0) | round(1) }}"
+      # Räknar ut procent av jäst genom att dela jäst i bageriprocent med den totala procenten        
       pizzakalkylator_jast_procent:
-        unit_of_measurement: bageriprocent
+        unit_of_measurement: '%'
         value_template: "{{ states('sensor.pizzakalkylator_kalkylerad_jast') | float(0) / states('sensor.pizzakalkylator_total_procent') | float(0) | round(1) }}"
+      # Räknar ut procent av salt genom att dela salt i bageriprocent med den totala procenten        
       pizzakalkylator_salt_procent:
-        unit_of_measurement: bageriprocent
+        unit_of_measurement: '%'
         value_template: "{{ states('input_number.pizzakalkylator_salt') | float(0) / states('sensor.pizzakalkylator_total_procent') | float(0) | round(1) }}"
+      # Räknar ut procent av mjöl genom att dela mjöl i bageriprocent med den totala procenten        
       pizzakalkylator_mjol_procent:
         value_template: "{{ states('input_number.pizzakalkylator_mjol') | float(0) / states('sensor.pizzakalkylator_total_procent') | float(0) | round(1) }}"
+      # Räknar ut vikt av vatten genom att gånga vatten i procent med den totala degvikten        
       pizzakalkylator_hydrering_vikt:
         unit_of_measurement: g
         value_template: "{{ ((states.sensor.pizzakalkylator_hydrering_procent.state | float) * (states.sensor.pizzakalkylator_total_degvikt.state | float)) | round(0) }}"
+      # Räknar ut vikt av jäst genom att gånga jäst i procent med den totala degvikten      
       pizzakalkylator_jast_vikt:
         unit_of_measurement: g
         value_template: "{{ ((states.sensor.pizzakalkylator_jast_procent.state | float) * (states.sensor.pizzakalkylator_total_degvikt.state | float)) | round(2) }}"
+      # Räknar ut vikt av salt genom att gånga salt i procent med den totala degvikten     
       pizzakalkylator_salt_vikt:
         unit_of_measurement: g
         value_template: "{{ ((states.sensor.pizzakalkylator_salt_procent.state | float) * (states.sensor.pizzakalkylator_total_degvikt.state | float)) | round(1) }}"
+      # Räknar ut vikt av mjöl genom att gånga mjöl i procent med den totala degvikten      
       pizzakalkylator_mjol_vikt:
         unit_of_measurement: g
         value_template: "{{ ((states.sensor.pizzakalkylator_mjol_procent.state | float) * (states.sensor.pizzakalkylator_total_degvikt.state | float)) | round(0) }}"
+      # Tar bort decimalen från antal pizzor    
       pizzakalkylator_antal_pizzor_utan_decimal:
         value_template: "{{ states('input_number.pizzakalkylator_antal_pizzor')|int}}"
         unit_of_measurement: st
+      # Tar bort decimalen från degvikten    
       pizzakalkylator_degvikt_utan_decimal:
         value_template: "{{ states('input_number.pizzakalkylator_degvikt')|int}}"
         unit_of_measurement: g
+      # Tar bort decimalen vattenprocenten     
       pizzakalkylator_hydrering_utan_decimal:
         value_template: "{{ states('input_number.pizzakalkylator_hydrering')|int}}"
         unit_of_measurement: '%'
+      # Avrundar mjölprocenten       
       pizzakalkylator_mjol_procent_avrundat:
         value_template: "{{ ((states('sensor.pizzakalkylator_mjol_vikt')|float) * 100 / (states('sensor.pizzakalkylator_total_degvikt')|float))|round(2) }}"
         unit_of_measurement: '%'
+      # Avrundar vattenprocenten           
       pizzakalkylator_hydrering_procent_avrundat:
         value_template: "{{ ((states('sensor.pizzakalkylator_hydrering_vikt')|float) * 100 / (states('sensor.pizzakalkylator_total_degvikt')|float))|round(2) }}"
         unit_of_measurement: '%'
+      # Avrundar saltprocenten       
       pizzakalkylator_salt_procent_avrundat:
         value_template: "{{ ((states('sensor.pizzakalkylator_salt_vikt')|float) * 100 / (states('sensor.pizzakalkylator_total_degvikt')|float))|round(2) }}"
         unit_of_measurement: '%'
+      # Avrundar jästprocenten       
       pizzakalkylator_jast_procent_avrundat:
         value_template: "{{ ((states('sensor.pizzakalkylator_jast_vikt')|float) * 100 / (states('sensor.pizzakalkylator_total_degvikt')|float))|round(3) }}"
-        unit_of_measurement: '%'         
+        unit_of_measurement: '%'
+        
+      # Kalkylerar jästmängden 
       pizzakalkylator_kalkylerad_jast:          
         value_template: >-
            {%- if is_state('input_select.rumstemperatur_rullgardin', '19 °C')
@@ -123,6 +143,148 @@ sensor:
            and is_state('input_select.pizzakalkylator_jastid_vid_5_grader', '145 h') -%} 0.15
            {%- elif is_state('input_select.rumstemperatur_rullgardin', '5 °C')
            and is_state('input_select.pizzakalkylator_jastid_vid_5_grader', '166 h') -%} 0.125
+           {%- else -%} **data saknas**
+           {%- endif %}
+        unit_of_measurement: '%'
+        
+        
+      # PIZZAKALKYLATOR INSTÄLLNINGAR FÖR SURDEG
+      
+      # Summerar alla procent
+      pizzakalkylator_total_procent_surdeg:
+        unit_of_measurement: '%'
+        value_template: "{{ states('input_number.pizzakalkylator_mjol') | float(0) + states('input_number.pizzakalkylator_hydrering') | float(0) + states('input_number.pizzakalkylator_salt') | float(0) + states('sensor.pizzakalkylator_kalkylerad_surdeg') | float(0) }}"
+      # Räknar ut procent av surdeg genom att dela surdeg i bageriprocent med den totala procenten        
+      pizzakalkylator_surdeg_procent:
+        unit_of_measurement: '%'
+        value_template: "{{ states('sensor.pizzakalkylator_kalkylerad_surdeg') | float(0) / states('sensor.pizzakalkylator_total_procent_surdeg') | float(0) | round(1) }}"
+      # Räknar ut procent av vatten genom att dela vatten i bageriprocent med den totala procenten         
+      pizzakalkylator_hydrering_procent_surdeg:
+        unit_of_measurement: '%'
+        value_template: "{{ states('input_number.pizzakalkylator_hydrering') | float(0) / states('sensor.pizzakalkylator_total_procent_surdeg') | float(0) | round(1) }}"
+      # Räknar ut procent av salt genom att dela salt i bageriprocent med den totala procenten        
+      pizzakalkylator_salt_procent_surdeg:
+        unit_of_measurement: '%'
+        value_template: "{{ states('input_number.pizzakalkylator_salt') | float(0) / states('sensor.pizzakalkylator_total_procent_surdeg') | float(0) | round(1) }}"
+      # Räknar ut procent av mjöl genom att dela mjöl i bageriprocent med den totala procenten        
+      pizzakalkylator_mjol_procent_surdeg:
+        value_template: "{{ states('input_number.pizzakalkylator_mjol') | float(0) / states('sensor.pizzakalkylator_total_procent_surdeg') | float(0) | round(1) }}"
+      # Räknar ut vikt av vatten genom att gånga vatten i procent med den totala degvikten      
+      pizzakalkylator_hydrering_vikt_surdeg:
+        unit_of_measurement: g
+        value_template: "{{ ((states.sensor.pizzakalkylator_hydrering_procent_surdeg.state | float) * (states.sensor.pizzakalkylator_total_degvikt.state | float)) | round(0) }}"
+      # Räknar ut vikt av surdeg genom att gånga surdeg i procent med den totala degvikten         
+      pizzakalkylator_surdeg_vikt:
+        unit_of_measurement: g
+        value_template: "{{ ((states.sensor.pizzakalkylator_surdeg_procent.state | float) * (states.sensor.pizzakalkylator_total_degvikt.state | float)) | round(1) }}"
+      # Räknar ut vikt av salt genom att gånga salt i procent med den totala degvikten         
+      pizzakalkylator_salt_vikt_surdeg:
+        unit_of_measurement: g
+        value_template: "{{ ((states.sensor.pizzakalkylator_salt_procent_surdeg.state | float) * (states.sensor.pizzakalkylator_total_degvikt.state | float)) | round(1) }}"
+      # Räknar ut vikt av mjöl genom att gånga mjöl i procent med den totala degvikten        
+      pizzakalkylator_mjol_vikt_surdeg:
+        unit_of_measurement: g
+        value_template: "{{ ((states.sensor.pizzakalkylator_mjol_procent_surdeg.state | float) * (states.sensor.pizzakalkylator_total_degvikt.state | float)) | round(0) }}"        
+      # Avrundar mjölprocenten         
+      pizzakalkylator_mjol_procent_avrundat_surdeg:
+        value_template: "{{ ((states('sensor.pizzakalkylator_mjol_vikt_surdeg')|float) * 100 / (states('sensor.pizzakalkylator_total_degvikt')|float))|round(2) }}"
+        unit_of_measurement: '%'
+      # Avrundar vattenprocenten     
+      pizzakalkylator_hydrering_procent_avrundat_surdeg:
+        value_template: "{{ ((states('sensor.pizzakalkylator_hydrering_vikt_surdeg')|float) * 100 / (states('sensor.pizzakalkylator_total_degvikt')|float))|round(2) }}"
+        unit_of_measurement: '%'
+      # Avrundar saltprocenten        
+      pizzakalkylator_salt_procent_avrundat_surdeg:
+        value_template: "{{ ((states('sensor.pizzakalkylator_salt_vikt_surdeg')|float) * 100 / (states('sensor.pizzakalkylator_total_degvikt')|float))|round(2) }}"
+        unit_of_measurement: '%'
+      # Avrundar surdegsprocenten        
+      pizzakalkylator_surdeg_procent_avrundat:
+        value_template: "{{ ((states('sensor.pizzakalkylator_surdeg_vikt')|float) * 100 / (states('sensor.pizzakalkylator_total_degvikt')|float))|round(2) }}"
+        unit_of_measurement: '%'
+        
+      # Kalkylerar surdegsmängden        
+      pizzakalkylator_kalkylerad_surdeg:          
+        value_template: >-
+           {%- if is_state('input_select.rumstemperatur_rullgardin', '19 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_19_grader', '11 h') -%} 30
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '19 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_19_grader', '15 h') -%} 20
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '19 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_19_grader', '18 h') -%} 15
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '19 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_19_grader', '22 h') -%} 10
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '19 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_19_grader', '29 h') -%} 5
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '19 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_19_grader', '34 h') -%} 3
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '19 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_19_grader', '38 h') -%} 2
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '19 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_19_grader', '45 h') -%} 1
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '21 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_21_grader', '8 h') -%} 30
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '21 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_21_grader', '11 h') -%} 20
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '21 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_21_grader', '13 h') -%} 15
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '21 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_21_grader', '16 h') -%} 10
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '21 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_21_grader', '21 h') -%} 5
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '21 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_21_grader', '24 h') -%} 3
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '21 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_21_grader', '28 h') -%} 2
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '21 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_21_grader', '33 h') -%} 1
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '23 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_23_grader', '7 h') -%} 30
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '23 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_23_grader', '9 h') -%} 20
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '23 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_23_grader', '11 h') -%} 15
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '23 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_23_grader', '13 h') -%} 10
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '23 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_23_grader', '17 h') -%} 5
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '23 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_23_grader', '20 h') -%} 3
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '23 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_23_grader', '23 h') -%} 2
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '23 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_23_grader', '27 h') -%} 1
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '25 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_25_grader', '5 h') -%} 30
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '25 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_25_grader', '7 h') -%} 20
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '25 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_25_grader', '9 h') -%} 15
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '25 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_25_grader', '11 h') -%} 10
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '25 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_25_grader', '14 h') -%} 5
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '25 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_25_grader', '17 h') -%} 3
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '25 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_25_grader', '19 h') -%} 2
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '25 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_25_grader', '22 h') -%} 1
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '5 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_5_grader', '125 h') -%} 30
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '5 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_5_grader', '171 h') -%} 20
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '5 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_5_grader', '204 h') -%} 15
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '5 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_5_grader', '225 h') -%} 10
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '5 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_5_grader', '283 h') -%} 5
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '5 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_5_grader', '355 h') -%} 3
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '5 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_5_grader', '434 h') -%} 2
+           {%- elif is_state('input_select.rumstemperatur_rullgardin', '5 °C')
+           and is_state('input_select.pizzakalkylator_jastid_surdeg_vid_5_grader', '513 h') -%} 1
            {%- else -%} **data saknas**
            {%- endif %}
         unit_of_measurement: '%'
