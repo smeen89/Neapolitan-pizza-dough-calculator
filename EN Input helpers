@@ -38,6 +38,12 @@ highest value: 4
 step length: 0,1
 unit of measurment: optional
 
+type: input_text
+name: pizzacalculator_leavening_agent
+lowest value: 0
+highest value: 100
+display mode: text
+
 type: input_select
 name: roomtemperature
 alternatives:
@@ -101,3 +107,63 @@ alternatives:
 12 h
 16 h
 18 h
+
+type: input_select
+name: pizzacalculator_prooftime_sourdough_at_5_degrees
+alternatives:
+125 h
+171 h
+204 h
+225 h
+283 h
+355 h
+434 h
+513 h
+
+type: input_select
+name: pizzacalculator_prooftime_sourdough_at_19_degrees
+alternatives:
+11 h
+15 h
+18 h
+22 h
+29 h
+34 h
+38 h
+45 h
+
+type: input_select
+name: pizzacalculator_prooftime_sourdough_at_21_degrees
+alternatives:
+8 h
+11 h
+13 h
+16 h
+21 h
+24 h
+28 h
+33 h
+
+type: input_select
+name: pizzacalculator_prooftime_sourdough_at_23_degrees
+alternatives:
+7 h
+9 h
+11 h
+13 h
+17 h
+20 h
+23 h
+27 h
+
+type: input_select
+name: pizzacalculator_prooftime_sourdough_at_25_degrees
+alternatives:
+5 h
+7 h
+9 h
+11 h
+14 h
+17 h
+19 h
+22 h
