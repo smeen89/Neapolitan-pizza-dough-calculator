@@ -4,7 +4,7 @@
 
 
 <h2>Prerequisits</h2>
-I have used the following HACS addons in order to setup the calculator
+You will need the following HACS addons in order to setup the calculator.
 
 https://github.com/custom-cards/button-card<br>
 https://github.com/custom-cards/stack-in-card<br>
