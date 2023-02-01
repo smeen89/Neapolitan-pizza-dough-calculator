@@ -1,6 +1,6 @@
 <h1>Neapolitan pizza dough calculator for Home Assistant</h1><br>
 
-![surdeg](https://user-images.githubusercontent.com/106514124/214793317-38050f2f-6f5e-45ca-8646-2760cafaed33.png)
+![pizza](https://user-images.githubusercontent.com/106514124/215994177-94d488a0-3d73-4ab4-9cb7-186a90ae5d27.png)
 
 
 <h2>Prerequisits</h2>
