@@ -72,3 +72,5 @@ For video demonstration and great ideas see this reddit thread: https://www.redd
 
 <b>Additional notes:</b><br>
 <i>*note 1: The yeast is calculated based on fresh yeast. I'm from Sweden and use Kronjäst blå. Other brands or yeast types may give varying results.</i><br>
+
+<a href="https://www.buymeacoffee.com/smeen89" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Beer" style="height: 41px !important;width: 174px !important;" ></a>
